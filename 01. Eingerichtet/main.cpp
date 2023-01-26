@@ -13,8 +13,18 @@ int main()
 	sf::Font font;
 	font.loadFromFile("TangoSans.ttf");
 
-	double speedx = 0;
+	double speedx = 0; //Movement
 	double speedy = 0;
+
+	int Menugenerell = 0; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
+
+	int wobinich = 5; //Position (Welche Karte geladen ist (1-9))
+
+	sf::Vector2f temppos; //Ist für die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
+
+	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
+
+	int richt = 0; //Ist für die Richtung wie die Textur des Autos ist da.
 
 	sf::Texture Gas;
 	Gas.loadFromFile("ressources/Gas.png");
@@ -134,17 +144,6 @@ int main()
 	GameIsOver.setSize(sf::Vector2f(500, 200));
 	GameIsOver.setPosition(382, 60);
 
-	int info = 0;
-	int wobinich = 5; //Position (Welche Karte geladen ist (1-9))
-	sf::Vector2f temppos; //Ist für die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
-
-	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
-
-	int richt = 0; //Ist für die Richtung wie die Textur des Autos ist da.
-
-	double speedx2 = 0;
-	double speedy2 = 0;
-
 	while (window.isOpen())
 	{
 		sf::Event eventnormal;
@@ -159,8 +158,8 @@ int main()
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 				if (button.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
-					info = 1;
-					while (info == 1)
+					Menugenerell = 1;
+					while (Menugenerell == 1)
 					{
 						if (gas <= 0) {
 							int gameover = 1;
@@ -178,7 +177,7 @@ int main()
 										sf::Vector2i mousePos7 = sf::Mouse::getPosition(window);
 										if (backtomenu.getGlobalBounds().contains(mousePos7.x, mousePos7.y))
 										{
-											info = 0;
+											Menugenerell = 0;
 											gameover = 0;
 											gas = 100;
 											player.setPosition(480, 404);
@@ -522,7 +521,7 @@ int main()
 										sf::Vector2i mousePos4 = sf::Mouse::getPosition(window);
 										if (backtomenu.getGlobalBounds().contains(mousePos4.x, mousePos4.y))
 										{
-											info = 0;
+											Menugenerell = 0;
 											escmenu = 0;
 											gas = 100;
 											player.setPosition(480, 404);
