@@ -1,57 +1,101 @@
 #include <SFML/Graphics.hpp>
+#include <string>
 #include <iostream>
+
+//sf::Texture Texturen();
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "Screen");
-    window.setFramerateLimit(30);
-    sf::Font font;
-    font.loadFromFile("TangoSans.ttf");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "DrivingUnderTheInfluence");
+	window.setFramerateLimit(30);
+	sf::Font font;
+	font.loadFromFile("TangoSans.ttf");
 
-    double speedx = 0;
-    double speedy = 0;
+	double speedx = 0;
+	double speedy = 0;
 
-    int a = 0, b = 0, c = 0, d = 0;
-    int gas1 = 0;
-    int gas2 = 0;
+	sf::Texture Gas;
+	Gas.loadFromFile("ressources/Gas.png");
 
-    double speedx2 = 0;
-    double speedy2 = 0;
+	sf::Texture Logo;
+	Logo.loadFromFile("ressources/Logo.png");
 
-    int a2 = 0, b2 = 0, c2 = 0, d2 = 0;
+	sf::Texture Coin;
+	Coin.loadFromFile("ressources/coin.png");
 
-    sf::Texture Gas;
-    Gas.loadFromFile("Gas2.png");
-    sf::Texture Gas20;
-    Gas20.loadFromFile("Gas.png");
+	sf::Texture Car;
+	Car.loadFromFile("ressources/Car1.png");
 
-    sf::Texture CarUp;
-    CarUp.loadFromFile("CarUp.png");
-    sf::Texture CarDown;
-    CarDown.loadFromFile("CarDown.png");
-    sf::Texture CarLeft;
-    CarLeft.loadFromFile("CarLeft.png");
-    sf::Texture CarRight;
-    CarRight.loadFromFile("CarRight.png");
+	sf::Texture ComingSoon;
+	ComingSoon.loadFromFile("ressources/ComingSoon.png");
 
-    sf::Texture CarUp2;
-    CarUp2.loadFromFile("CarUp2.png");
-    sf::Texture CarDown2;
-    CarDown2.loadFromFile("CarDown2.png");
-    sf::Texture CarLeft2;
-    CarLeft2.loadFromFile("CarLeft2.png");
-    sf::Texture CarRight2;
-    CarRight2.loadFromFile("CarRight2.png");
+	sf::Texture Map;
+	Map.loadFromFile("ressources/map5.png");
 
-    sf::Texture Bod;
-    Bod.loadFromFile("boden.png");
+	sf::Texture ButtonNor;
+	ButtonNor.loadFromFile("ressources/NormalButton.png");
+	sf::Texture ButtonEx;
+	ButtonEx.loadFromFile("ressources/ExitButton.png");
+	sf::Texture ButtonHard;
+	ButtonHard.loadFromFile("ressources/HardButton.png");
+	sf::Texture ButtonBackGame;
+	ButtonBackGame.loadFromFile("ressources/BackToGameButton.png");
+	sf::Texture ButtonBackMenu;
+	ButtonBackMenu.loadFromFile("ressources/BackToMenuButton.png");
+	sf::Texture GameOver;
+	GameOver.loadFromFile("ressources/gameover.png");
 
-    sf::RectangleShape Boden;
-    Boden.setTexture(&Bod);
-    Boden.setSize(sf::Vector2f(1280, 720));
+	sf::RectangleShape button(sf::Vector2f(200, 50));
+	button.setPosition(sf::Vector2f(490, 250));
+	button.setTexture(&ButtonNor);
+	button.setSize(sf::Vector2f(300, 50));
+	button.setFillColor(sf::Color(143, 143, 143));
+	button.setOutlineThickness(2);
+	button.setOutlineColor(sf::Color::Black);
+
+	sf::RectangleShape button2(sf::Vector2f(200, 50));
+	button2.setPosition(sf::Vector2f(490, 320));
+	button2.setTexture(&ButtonHard);
+	button2.setSize(sf::Vector2f(300, 50));
+	button2.setFillColor(sf::Color(143, 143, 143));
+	button2.setOutlineThickness(2);
+	button2.setOutlineColor(sf::Color::Black);
+
+	sf::RectangleShape button3(sf::Vector2f(200, 50));
+	button3.setPosition(sf::Vector2f(490, 390));
+	button3.setTexture(&ButtonEx);
+	button3.setSize(sf::Vector2f(300, 50));
+	button3.setFillColor(sf::Color(143, 143, 143));
+	button3.setOutlineThickness(2);
+	button3.setOutlineColor(sf::Color::Black);
+
+	sf::RectangleShape backtomenu(sf::Vector2f(200, 50));
+	backtomenu.setPosition(sf::Vector2f(490, 285));
+	backtomenu.setTexture(&ButtonBackMenu);
+	backtomenu.setSize(sf::Vector2f(300, 50));
+	backtomenu.setFillColor(sf::Color(143, 143, 143));
+	backtomenu.setOutlineThickness(2);
+	backtomenu.setOutlineColor(sf::Color::Black);
+
+	sf::RectangleShape backtogame(sf::Vector2f(200, 50));
+	backtogame.setPosition(sf::Vector2f(490, 355));
+	backtogame.setTexture(&ButtonBackGame);
+	backtogame.setSize(sf::Vector2f(300, 50));
+	backtogame.setFillColor(sf::Color(143, 143, 143));
+	backtogame.setOutlineThickness(2);
+	backtogame.setOutlineColor(sf::Color::Black);
+
+	sf::RectangleShape Boden;
+	Boden.setTexture(&Map);
+	Boden.setSize(sf::Vector2f(1280, 720));
+
+	sf::RectangleShape LogoMenu;
+	LogoMenu.setTexture(&Logo);
+	LogoMenu.setSize(sf::Vector2f(300, 300));
+	LogoMenu.setPosition(sf::Vector2f(490, 0));
 
 	sf::RectangleShape Start;
-	Start.setFillColor(sf::Color(69, 69, 69, 0));
+	Start.setFillColor(sf::Color(69, 69, 69, 220));
 	Start.setPosition(0, 0);
 	Start.setSize(sf::Vector2f(1280, 720));
 
@@ -68,150 +112,505 @@ int main()
 	GasVisRot2.setSize(sf::Vector2f(100, 15));
 	GasVisRot2.setPosition(60, 40);
 
-	sf::RectangleShape GasVisBlau;
-	GasVisBlau.setFillColor(sf::Color::Blue);
-	GasVisBlau.setOutlineThickness(1);
-	GasVisBlau.setOutlineColor(sf::Color::White);
-	GasVisBlau.setPosition(1208, 55);
-	GasVisBlau.setRotation(180);
+	sf::RectangleShape player;
+	player.setTexture(&Car);
+	player.setSize(sf::Vector2f(36, 36));
+	player.setPosition(480, 404);
 
-	sf::RectangleShape GasVisBlau2;
-	GasVisBlau2.setFillColor(sf::Color(69, 69, 69));
-	GasVisBlau2.setOutlineThickness(1);
-	GasVisBlau2.setOutlineColor(sf::Color::White);
-	GasVisBlau2.setSize(sf::Vector2f(100, 15));
-	GasVisBlau2.setPosition(1208, 55);
-	GasVisBlau2.setRotation(180);
+	sf::RectangleShape GasIcon;
+	GasIcon.setTexture(&Gas);
+	GasIcon.setSize(sf::Vector2f(50, 50));
+	GasIcon.setPosition(20, 15);
 
-    sf::RectangleShape player;
-    player.setTexture(&CarRight);
-    player.setSize(sf::Vector2f(36, 36));
-    player.setPosition(100, 400);
+	sf::RectangleShape CoinIcon;
+	CoinIcon.setTexture(&Coin);
+	CoinIcon.setSize(sf::Vector2f(50, 50));
+	CoinIcon.setPosition(1200, 15);
 
-    sf::RectangleShape player2;
-    player2.setTexture(&CarLeft2);
-    player2.setSize(sf::Vector2f(36, 36));
-    player2.setPosition(400, 400);
+	sf::RectangleShape GameIsOver;
+	GameIsOver.setTexture(&GameOver);
+	GameIsOver.setSize(sf::Vector2f(500, 200));
+	GameIsOver.setPosition(382, 60);
 
-    sf::RectangleShape GasIcon;
-    GasIcon.setTexture(&Gas);
-    GasIcon.setSize(sf::Vector2f(50, 50));
-    GasIcon.setPosition(1200, 15);
+	int info = 0;
+	int wobinich = 5;
+	sf::Vector2f temppos;
 
-    sf::RectangleShape GasIcon2;
-    GasIcon2.setTexture(&Gas20);
-    GasIcon2.setSize(sf::Vector2f(50, 50));
-    GasIcon2.setPosition(20, 15);
+	int a = 0, b = 0, c = 0, d = 0;
+	float gas = 100;
 
-    GasStation.setTexture(&Gas);
-    sf::RectangleShape GasStation;
+	int richt = 0;
 
-    int gas = 10000;
-    int gass = 10000;
+	double speedx2 = 0;
+	double speedy2 = 0;
 
-    while (window.isOpen())
-    {
+	int a2 = 0, b2 = 0, c2 = 0, d2 = 0;
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-            speedx = -5;
-            player.setTexture(&CarLeft);
-            gas = gas - 0.001;
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            speedx = 5;
-            player.setTexture(&CarRight);
-            gas = gas - 0.001;
-        }
-        else
-        {
-            speedx = 0;
-        }
+	while (window.isOpen())
+	{
+		sf::Event eventnormal;
+		while (window.pollEvent(eventnormal))
+		{
+			if (eventnormal.type == sf::Event::Closed)
+				window.close();
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            speedy = -5;
-            player.setTexture(&CarUp);
-            gas = gas - 0.001;
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            speedy = 5;
-            player.setTexture(&CarDown);
-            gas = gas - 0.001;
-        }
-        else
-        {
-            speedy = 0;
-        }
+			if (eventnormal.type == sf::Event::MouseButtonPressed &&
+				eventnormal.mouseButton.button == sf::Mouse::Left)
+			{
+				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				if (button.getGlobalBounds().contains(mousePos.x, mousePos.y))
+				{
+					info = 1;
+					while (info == 1)
+					{
+						if (gas <= 0) {
+							int gameover = 1;
+							while (gameover == 1)
+							{
+								sf::Event eventgameover;
+								while (window.pollEvent(eventgameover))
+								{
+									if (eventgameover.type == sf::Event::Closed)
+										window.close();
+
+									if (eventgameover.type == sf::Event::MouseButtonPressed &&
+										eventgameover.mouseButton.button == sf::Mouse::Left)
+									{
+										sf::Vector2i mousePos7 = sf::Mouse::getPosition(window);
+										if (backtomenu.getGlobalBounds().contains(mousePos7.x, mousePos7.y))
+										{
+											info = 0;
+											gameover = 0;
+											gas = 100;
+											player.setPosition(480, 404);
+											richt = 1;
+											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+											player.setTexture(&Car);
+											Boden.setTexture(&Map);
+											wobinich = 5;
+
+										}
+									}
+								}
+
+								window.draw(Boden);
+								window.draw(player);
+								window.draw(GasIcon);
+								window.draw(CoinIcon);
+								GasVisRot.setSize(sf::Vector2f((gas), 15));
+								window.draw(GasVisRot2);
+								window.draw(GasVisRot);
+								window.draw(Start);
+								window.draw(backtomenu);
+								window.draw(GameIsOver);
+								window.display();
+							}
+						}
+
+						if (wobinich == 1)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1280)
+							{
+								player.setPosition(temppos.x - 1280, temppos.y);
+								wobinich = 2;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.x <= 0)
+							{
+								player.setPosition(temppos.x + 5, temppos.y);
+							}
+							if (temppos.y >= 686)
+							{
+								player.setPosition(temppos.x, temppos.y - 5);
+							}
+							if (temppos.y <= -24)
+							{
+								player.setPosition(temppos.x, temppos.y + 744);
+								wobinich = 4;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+						}
+						if (wobinich == 2)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1280)
+							{
+								player.setPosition(temppos.x - 1304, temppos.y);
+								wobinich = 3;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.x <= -24)
+							{
+								player.setPosition(temppos.x + 1304, temppos.y);
+								wobinich = 1;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y >= 686)
+							{
+								player.setPosition(temppos.x, temppos.y - 5);
+							}
+							if (temppos.y <= -24)
+							{
+								player.setPosition(temppos.x, temppos.y + 744);
+								wobinich = 5;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+						}
+						if (wobinich == 3)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1246)
+							{
+								player.setPosition(temppos.x - 5, temppos.y);
+							}
+							if (temppos.x <= -24)
+							{
+								player.setPosition(temppos.x + 1304, temppos.y);
+								wobinich = 2;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y >= 686)
+							{
+								player.setPosition(temppos.x, temppos.y - 5);
+							}
+							if (temppos.y <= -24)
+							{
+								player.setPosition(temppos.x, temppos.y + 744);
+								wobinich = 6;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+						}
+						if (wobinich == 4)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1280)
+							{
+								player.setPosition(temppos.x - 1304, temppos.y);
+								wobinich = 5;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.x <= 0)
+							{
+								player.setPosition(temppos.x + 5, temppos.y);
+							}
+							if (temppos.y >= 720)
+							{
+								player.setPosition(temppos.x, temppos.y - 744);
+								wobinich = 1;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y <= -24)
+							{
+								player.setPosition(temppos.x, temppos.y + 744);
+								wobinich = 7;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+						}
+						if (wobinich == 5)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1280)
+							{
+								player.setPosition(temppos.x - 1304, temppos.y);
+								wobinich = 6;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.x <= -24)
+							{
+								player.setPosition(temppos.x + 1304, temppos.y);
+								wobinich = 4;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y >= 720)
+							{
+								player.setPosition(temppos.x, temppos.y - 744);
+								wobinich = 2;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y <= -24)
+							{
+								player.setPosition(temppos.x, temppos.y + 744);
+								wobinich = 8;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+						}
+						if (wobinich == 6)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1246)
+							{
+								player.setPosition(temppos.x - 5, temppos.y);
+							}
+							if (temppos.x <= -24)
+							{
+								player.setPosition(temppos.x + 1304, temppos.y);
+								wobinich = 5;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y >= 720)
+							{
+								player.setPosition(temppos.x, temppos.y - 744);
+								wobinich = 3;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y <= -24)
+							{
+								player.setPosition(temppos.x, temppos.y + 744);
+								wobinich = 9;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+						}
+						if (wobinich == 7)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1280)
+							{
+								player.setPosition(temppos.x - 1304, temppos.y);
+								wobinich = 8;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.x <= 0)
+							{
+								player.setPosition(temppos.x + 5, temppos.y);
+							}
+							if (temppos.y >= 720)
+							{
+								player.setPosition(temppos.x, temppos.y - 744);
+								wobinich = 4;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y <= 0)
+							{
+								player.setPosition(temppos.x, temppos.y + 5);
+							}
+						}
+						if (wobinich == 8)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1280)
+							{
+								player.setPosition(temppos.x - 1304, temppos.y);
+								wobinich = 9;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.x <= -24)
+							{
+								player.setPosition(temppos.x + 1304, temppos.y);
+								wobinich = 7;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y >= 720)
+							{
+								player.setPosition(temppos.x, temppos.y - 744);
+								wobinich = 5;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y <= 0)
+							{
+								player.setPosition(temppos.x, temppos.y + 5);
+							}
+						}
+						if (wobinich == 9)
+						{
+							temppos = player.getPosition();
+							if (temppos.x >= 1246)
+							{
+								player.setPosition(temppos.x - 5, temppos.y);
+							}
+							if (temppos.x <= -24)
+							{
+								player.setPosition(temppos.x + 1304, temppos.y);
+								wobinich = 8;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y >= 720)
+							{
+								player.setPosition(temppos.x, temppos.y - 744);
+								wobinich = 6;
+								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+								Boden.setTexture(&Map);
+							}
+							if (temppos.y <= 0)
+							{
+								player.setPosition(temppos.x, temppos.y + 5);
+							}
+						}
+
+						speedx = 0;
+						speedy = 0;
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+						{
+							richt = 1;
+							speedx -= 5;
+							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							player.setTexture(&Car);
+							gas -= 0.04;
+						}
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+						{
+							richt = 2;
+							speedx += 5;
+							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							player.setTexture(&Car);
+							gas -= 0.04;
+						}
+
+
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+						{
+							richt = 3;
+							speedy -= 5;
+							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							player.setTexture(&Car);
+							gas -= 0.04;
+						}
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+						{
+							richt = 4;
+							speedy += 5;
+							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							player.setTexture(&Car);
+							gas -= 0.04;
+						}
+
+						if (speedx != 0 && speedy != 0) {
+							speedx = (speedx / 5) * 3;
+							speedy = (speedy / 5) * 3;
+						}
+
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+						{
+							int escmenu = 1;
+
+							while (escmenu == 1)
+							{
+								sf::Event eventnormal;
+								while (window.pollEvent(eventnormal))
+								{
+									if (eventnormal.type == sf::Event::Closed)
+										window.close();
+
+									if (eventnormal.type == sf::Event::MouseButtonPressed &&
+										eventnormal.mouseButton.button == sf::Mouse::Left)
+									{
+										sf::Vector2i mousePos4 = sf::Mouse::getPosition(window);
+										if (backtomenu.getGlobalBounds().contains(mousePos4.x, mousePos4.y))
+										{
+											info = 0;
+											escmenu = 0;
+											gas = 100;
+											player.setPosition(480, 404);
+											richt = 1;
+											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+											player.setTexture(&Car);
+											Boden.setTexture(&Map);
+											wobinich = 5;
+
+										}
+
+										sf::Vector2i mousePos5 = sf::Mouse::getPosition(window);
+										if (backtogame.getGlobalBounds().contains(mousePos5.x, mousePos5.y))
+										{
+											escmenu = 0;
+										}
+									}
+								}
+
+								window.draw(Boden);
+								window.draw(player);
+								window.draw(GasIcon);
+								window.draw(CoinIcon);
+								GasVisRot.setSize(sf::Vector2f((gas), 15));
+								window.draw(GasVisRot2);
+								window.draw(GasVisRot);
+								window.draw(Start);
+								window.draw(backtomenu);
+								window.draw(backtogame);
+								window.display();
+							}
+						}
+
+						player.move(speedx, speedy);
+						window.clear();
+						window.draw(Boden);
+						window.draw(player);
+						window.draw(GasIcon);
+						window.draw(CoinIcon);
+						GasVisRot.setSize(sf::Vector2f((gas), 15));
+						window.draw(GasVisRot2);
+						window.draw(GasVisRot);
+
+
+						window.display();
+					}
+				}
+			}
+
+			if (eventnormal.type == sf::Event::MouseButtonPressed &&
+				eventnormal.mouseButton.button == sf::Mouse::Left)
+			{
+				sf::Vector2i mousePos2 = sf::Mouse::getPosition(window);
+				if (button2.getGlobalBounds().contains(mousePos2.x, mousePos2.y))
+				{
+					button2.setFillColor(sf::Color(145, 0, 0));
+					button2.setTexture(&ComingSoon);
+				}
+			}
+
+			if (eventnormal.type == sf::Event::MouseButtonPressed &&
+				eventnormal.mouseButton.button == sf::Mouse::Left)
+			{
+				sf::Vector2i mousePos3 = sf::Mouse::getPosition(window);
+				if (button3.getGlobalBounds().contains(mousePos3.x, mousePos3.y))
+				{
+					window.close();
+				}
+			}
+		}
 
 
 
-
-
-
-
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        {
-            speedx2 = -5;
-            player2.setTexture(&CarLeft2);
-            gass = gass - 0.001;
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        {
-            speedx2 = 5;
-            player2.setTexture(&CarRight2);
-            gass = gass - 0.001;
-        }
-        else
-        {
-            speedx2 = 0;
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-        {
-            speedy2 = -5;
-            player2.setTexture(&CarUp2);
-            gass = gass - 0.001;
-        }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            speedy2 = 5;
-            player2.setTexture(&CarDown2);
-            gass = gass - 0.001;
-        }
-        else
-        {
-            speedy2 = 0;
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-
-            window.close();
-        }
-
-        gas1 = gas / 100;
-        gas2 = gass / 100;
-
-        player.move(speedx, speedy);
-        player2.move(speedx2, speedy2);
-        window.clear();
-        window.draw(Boden);
-        window.draw(player);
-        window.draw(player2);
-        window.draw(GasIcon);
-		GasVisRot.setSize(sf::Vector2f((gas2), 15));
+		window.clear();
+		window.draw(Boden);
+		window.draw(player);
+		window.draw(GasIcon);
+		window.draw(CoinIcon);
+		GasVisRot.setSize(sf::Vector2f((gas), 15));
 		window.draw(GasVisRot2);
 		window.draw(GasVisRot);
-        window.draw(GasIcon2);
-		GasVisBlau.setSize(sf::Vector2f((gas1), 15));
-		window.draw(GasVisBlau2);
-		window.draw(GasVisBlau);
 		window.draw(Start);
 
-        window.display();
-    }
-    return 0;
+
+		window.draw(button);
+		window.draw(button2);
+		window.draw(button3);
+
+		window.draw(LogoMenu);
+
+		window.display();
+	}
 }
