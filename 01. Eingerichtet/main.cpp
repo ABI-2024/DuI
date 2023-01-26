@@ -4,19 +4,17 @@
 
 //sf::Texture Texturen();
 
-//eigener Branch erstellt
-
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "DrivingUnderTheInfluence");
 	window.setFramerateLimit(30);
 	sf::Font font;
-	font.loadFromFile("TangoSans.ttf");
+	font.loadFromFile("upheavtt.ttf");
 
 	double speedx = 0; //Movement
 	double speedy = 0;
 
-	int Menugenerell = 0; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
+	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
 
 	int wobinich = 5; //Position (Welche Karte geladen ist (1-9))
 
@@ -24,7 +22,9 @@ int main()
 
 	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
 
-	int richt = 0; //Ist für die Richtung wie die Textur des Autos ist da.
+	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
+
+	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 10 solang es noch keine Coins gibt.
 
 	sf::Texture Gas;
 	Gas.loadFromFile("ressources/Gas.png");
@@ -36,7 +36,7 @@ int main()
 	Coin.loadFromFile("ressources/coin.png");
 
 	sf::Texture Car;
-	Car.loadFromFile("ressources/Car1.png");
+	Car.loadFromFile("ressources/Car3.png");
 
 	sf::Texture ComingSoon;
 	ComingSoon.loadFromFile("ressources/ComingSoon.png");
@@ -56,6 +56,15 @@ int main()
 	ButtonBackMenu.loadFromFile("ressources/BackToMenuButton.png");
 	sf::Texture GameOver;
 	GameOver.loadFromFile("ressources/gameover.png");
+
+	sf::Text CoinAnzahl; //Anzeige der Coins (die Text anzeige)
+	CoinAnzahl.setFont(font);
+	CoinAnzahl.setFillColor(sf::Color(252, 228, 13));
+	CoinAnzahl.setOutlineThickness(2);
+	CoinAnzahl.setOutlineColor(sf::Color(237, 167, 2));
+	CoinAnzahl.setCharacterSize(35);
+	CoinAnzahl.setPosition(1145, 15);
+	CoinAnzahl.setString(std::to_string(Coins));
 
 	sf::RectangleShape button(sf::Vector2f(200, 50));
 	button.setPosition(sf::Vector2f(490, 250));
@@ -127,7 +136,7 @@ int main()
 	sf::RectangleShape player;
 	player.setTexture(&Car);
 	player.setSize(sf::Vector2f(36, 36));
-	player.setPosition(480, 404);
+	player.setPosition(643, 554);
 
 	sf::RectangleShape GasIcon;
 	GasIcon.setTexture(&Gas);
@@ -136,7 +145,7 @@ int main()
 
 	sf::RectangleShape CoinIcon;
 	CoinIcon.setTexture(&Coin);
-	CoinIcon.setSize(sf::Vector2f(50, 50));
+	CoinIcon.setSize(sf::Vector2f(45, 50));
 	CoinIcon.setPosition(1200, 15);
 
 	sf::RectangleShape GameIsOver;
@@ -180,8 +189,8 @@ int main()
 											Menugenerell = 0;
 											gameover = 0;
 											gas = 100;
-											player.setPosition(480, 404);
-											richt = 1;
+											player.setPosition(643, 554);
+											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 											player.setTexture(&Car);
 											wobinich = 5;
@@ -524,8 +533,8 @@ int main()
 											Menugenerell = 0;
 											escmenu = 0;
 											gas = 100;
-											player.setPosition(480, 404);
-											richt = 1;
+											player.setPosition(643, 554);
+											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurückgesetzt auf Standart
 											player.setTexture(&Car);
 											wobinich = 5;
@@ -548,6 +557,7 @@ int main()
 								window.draw(player);
 								window.draw(GasIcon);
 								window.draw(CoinIcon);
+								window.draw(CoinAnzahl);
 								GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 								window.draw(GasVisRot2);
 								window.draw(GasAnzeigeVoll);
@@ -566,6 +576,7 @@ int main()
 						window.draw(player);
 						window.draw(GasIcon);
 						window.draw(CoinIcon);
+						window.draw(CoinAnzahl);
 						GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 						window.draw(GasVisRot2);
 						window.draw(GasAnzeigeVoll);
