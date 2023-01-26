@@ -96,16 +96,16 @@ int main()
 	LogoMenu.setSize(sf::Vector2f(300, 300));
 	LogoMenu.setPosition(sf::Vector2f(490, 0));
 
-	sf::RectangleShape Start;
-	Start.setFillColor(sf::Color(69, 69, 69, 220));
-	Start.setPosition(0, 0);
-	Start.setSize(sf::Vector2f(1280, 720));
+	sf::RectangleShape HintenGrau;
+	HintenGrau.setFillColor(sf::Color(69, 69, 69, 220)); //Hier kann mit der letzten Zahl die Opacity geändert werden.
+	HintenGrau.setPosition(0, 0);
+	HintenGrau.setSize(sf::Vector2f(1280, 720));
 
-	sf::RectangleShape GasVisRot;
-	GasVisRot.setFillColor(sf::Color(255, 0, 0));
-	GasVisRot.setOutlineThickness(1);
-	GasVisRot.setOutlineColor(sf::Color::White);
-	GasVisRot.setPosition(60, 40);
+	sf::RectangleShape GasAnzeigeVoll;
+	GasAnzeigeVoll.setFillColor(sf::Color(255, 0, 0));
+	GasAnzeigeVoll.setOutlineThickness(1);
+	GasAnzeigeVoll.setOutlineColor(sf::Color::White);
+	GasAnzeigeVoll.setPosition(60, 40);
 
 	sf::RectangleShape GasVisRot2;
 	GasVisRot2.setFillColor(sf::Color(69, 69, 69));
@@ -135,18 +135,15 @@ int main()
 	GameIsOver.setPosition(382, 60);
 
 	int info = 0;
-	int wobinich = 5;
-	sf::Vector2f temppos;
+	int wobinich = 5; //Position (Welche Karte geladen ist (1-9))
+	sf::Vector2f temppos; //Ist für die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
 
-	int a = 0, b = 0, c = 0, d = 0;
-	float gas = 100;
+	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
 
-	int richt = 0;
+	int richt = 0; //Ist für die Richtung wie die Textur des Autos ist da.
 
 	double speedx2 = 0;
 	double speedy2 = 0;
-
-	int a2 = 0, b2 = 0, c2 = 0, d2 = 0;
 
 	while (window.isOpen())
 	{
@@ -188,21 +185,24 @@ int main()
 											richt = 1;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 											player.setTexture(&Car);
-											Boden.setTexture(&Map);
 											wobinich = 5;
+											Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+											Boden.setTexture(&Map);
 
 										}
 									}
 								}
 
+								//GameOver Screen (hier wird alles gedrawt was man sieht, wenn einem der Tank ausgeht)
+
 								window.draw(Boden);
 								window.draw(player);
 								window.draw(GasIcon);
 								window.draw(CoinIcon);
-								GasVisRot.setSize(sf::Vector2f((gas), 15));
+								GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 								window.draw(GasVisRot2);
-								window.draw(GasVisRot);
-								window.draw(Start);
+								window.draw(GasAnzeigeVoll);
+								window.draw(HintenGrau);
 								window.draw(backtomenu);
 								window.draw(GameIsOver);
 								window.display();
@@ -527,10 +527,11 @@ int main()
 											gas = 100;
 											player.setPosition(480, 404);
 											richt = 1;
-											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurückgesetzt auf Standart
 											player.setTexture(&Car);
-											Boden.setTexture(&Map);
 											wobinich = 5;
+											Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
+											Boden.setTexture(&Map);
 
 										}
 
@@ -542,19 +543,23 @@ int main()
 									}
 								}
 
+								//Esc-Menue (hier wird alles gedrawt was wärend dem Menü zusehen ist wenn man ESC drückt)
+
 								window.draw(Boden);
 								window.draw(player);
 								window.draw(GasIcon);
 								window.draw(CoinIcon);
-								GasVisRot.setSize(sf::Vector2f((gas), 15));
+								GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 								window.draw(GasVisRot2);
-								window.draw(GasVisRot);
-								window.draw(Start);
+								window.draw(GasAnzeigeVoll);
+								window.draw(HintenGrau);
 								window.draw(backtomenu);
 								window.draw(backtogame);
 								window.display();
 							}
 						}
+
+						//Das ist der Draw-Bereich wärend des Spiels
 
 						player.move(speedx, speedy);
 						window.clear();
@@ -562,9 +567,9 @@ int main()
 						window.draw(player);
 						window.draw(GasIcon);
 						window.draw(CoinIcon);
-						GasVisRot.setSize(sf::Vector2f((gas), 15));
+						GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 						window.draw(GasVisRot2);
-						window.draw(GasVisRot);
+						window.draw(GasAnzeigeVoll);
 
 
 						window.display();
@@ -594,20 +599,14 @@ int main()
 			}
 		}
 
-
+		// Hier ist der Startbirldschirm(Wo man den Mode oder Exit auswählt und das Logo zu sehen ist)
 
 		window.clear();
-		window.draw(Boden);
-		window.draw(player);
-		window.draw(GasIcon);
-		window.draw(CoinIcon);
-		GasVisRot.setSize(sf::Vector2f((gas), 15));
-		window.draw(GasVisRot2);
-		window.draw(GasVisRot);
-		window.draw(Start);
+		window.draw(Boden); //Bosen ist das Rechteck wo die Map drauf geladen wird.
+		window.draw(HintenGrau);
 
 
-		window.draw(button);
+		window.draw(button); //(Normal-Mode Button)
 		window.draw(button2);
 		window.draw(button3);
 
