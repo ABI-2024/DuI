@@ -24,7 +24,7 @@ int main()
 
 	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
 
-	int richt = 0; //Ist für die Richtung wie die Textur des Autos ist da.
+	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
 
 	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 10 solang es noch keine Coins gibt.
 
@@ -38,7 +38,7 @@ int main()
 	Coin.loadFromFile("ressources/coin.png");
 
 	sf::Texture Car;
-	Car.loadFromFile("ressources/Car1.png");
+	Car.loadFromFile("ressources/Car3.png");
 
 	sf::Texture ComingSoon;
 	ComingSoon.loadFromFile("ressources/ComingSoon.png");
@@ -138,7 +138,7 @@ int main()
 	sf::RectangleShape player;
 	player.setTexture(&Car);
 	player.setSize(sf::Vector2f(36, 36));
-	player.setPosition(480, 404);
+	player.setPosition(643, 554);
 
 	sf::RectangleShape GasIcon;
 	GasIcon.setTexture(&Gas);
@@ -169,6 +169,7 @@ int main()
 				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 				if (button.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
+					Menugenerell = 1;
 					while (Menugenerell == 1)
 					{
 						if (gas <= 0) {
@@ -190,8 +191,8 @@ int main()
 											Menugenerell = 0;
 											gameover = 0;
 											gas = 100;
-											player.setPosition(480, 404);
-											richt = 1;
+											player.setPosition(643, 554);
+											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 											player.setTexture(&Car);
 											wobinich = 5;
@@ -534,8 +535,8 @@ int main()
 											Menugenerell = 0;
 											escmenu = 0;
 											gas = 100;
-											player.setPosition(480, 404);
-											richt = 1;
+											player.setPosition(643, 554);
+											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurückgesetzt auf Standart
 											player.setTexture(&Car);
 											wobinich = 5;
