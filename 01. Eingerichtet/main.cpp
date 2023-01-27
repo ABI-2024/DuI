@@ -2,9 +2,8 @@
 #include <string>
 #include <iostream>
 
-//sf::Texture Texturen();
-
-//eigener Branch erstellt
+int randomZahl();
+sf::Vector2f zweiRandomZahl();
 
 int main()
 {
@@ -27,6 +26,8 @@ int main()
 	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
 
 	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 10 solang es noch keine Coins gibt.
+
+	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
 
 	sf::Texture Gas;
 	Gas.loadFromFile("ressources/Gas.png");
@@ -150,6 +151,18 @@ int main()
 	CoinIcon.setSize(sf::Vector2f(45, 50));
 	CoinIcon.setPosition(1200, 15);
 
+	sf::RectangleShape Coin1;
+	Coin1.setTexture(&Coin);
+	Coin1.setSize(sf::Vector2f(25, 30));
+
+	sf::RectangleShape Coin2;
+	Coin2.setTexture(&Coin);
+	Coin2.setSize(sf::Vector2f(25, 30));
+
+	sf::RectangleShape Coin3;
+	Coin3.setTexture(&Coin);
+	Coin3.setSize(sf::Vector2f(25, 30));
+
 	sf::RectangleShape GameIsOver;
 	GameIsOver.setTexture(&GameOver);
 	GameIsOver.setSize(sf::Vector2f(500, 200));
@@ -190,6 +203,7 @@ int main()
 										{
 											Menugenerell = 0;
 											gameover = 0;
+											coinsetzen = 1;
 											gas = 100;
 											player.setPosition(643, 554);
 											richt = 3;
@@ -226,6 +240,7 @@ int main()
 							{
 								player.setPosition(temppos.x - 1280, temppos.y);
 								wobinich = 2;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -241,6 +256,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 744);
 								wobinich = 4;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -252,6 +268,7 @@ int main()
 							{
 								player.setPosition(temppos.x - 1304, temppos.y);
 								wobinich = 3;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -259,6 +276,7 @@ int main()
 							{
 								player.setPosition(temppos.x + 1304, temppos.y);
 								wobinich = 1;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -270,6 +288,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 744);
 								wobinich = 5;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -285,6 +304,7 @@ int main()
 							{
 								player.setPosition(temppos.x + 1304, temppos.y);
 								wobinich = 2;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -296,6 +316,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 744);
 								wobinich = 6;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -307,6 +328,7 @@ int main()
 							{
 								player.setPosition(temppos.x - 1304, temppos.y);
 								wobinich = 5;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -318,6 +340,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y - 744);
 								wobinich = 1;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -325,6 +348,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 744);
 								wobinich = 7;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -336,6 +360,7 @@ int main()
 							{
 								player.setPosition(temppos.x - 1304, temppos.y);
 								wobinich = 6;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -343,6 +368,7 @@ int main()
 							{
 								player.setPosition(temppos.x + 1304, temppos.y);
 								wobinich = 4;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -350,6 +376,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y - 744);
 								wobinich = 2;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -357,6 +384,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 744);
 								wobinich = 8;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -372,6 +400,7 @@ int main()
 							{
 								player.setPosition(temppos.x + 1304, temppos.y);
 								wobinich = 5;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -379,6 +408,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y - 744);
 								wobinich = 3;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -386,6 +416,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 744);
 								wobinich = 9;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -397,6 +428,7 @@ int main()
 							{
 								player.setPosition(temppos.x - 1304, temppos.y);
 								wobinich = 8;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -408,6 +440,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y - 744);
 								wobinich = 4;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -423,6 +456,7 @@ int main()
 							{
 								player.setPosition(temppos.x - 1304, temppos.y);
 								wobinich = 9;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -430,6 +464,7 @@ int main()
 							{
 								player.setPosition(temppos.x + 1304, temppos.y);
 								wobinich = 7;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -437,6 +472,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y - 744);
 								wobinich = 5;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -456,6 +492,7 @@ int main()
 							{
 								player.setPosition(temppos.x + 1304, temppos.y);
 								wobinich = 8;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -463,6 +500,7 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y - 744);
 								wobinich = 6;
+								coinsetzen = 1;
 								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 								Boden.setTexture(&Map);
 							}
@@ -470,6 +508,21 @@ int main()
 							{
 								player.setPosition(temppos.x, temppos.y + 5);
 							}
+						}
+
+						if (coinsetzen == 1)
+						{
+
+							temppos = zweiRandomZahl();
+							Coin1.setPosition(temppos);
+
+							temppos = zweiRandomZahl();
+							Coin2.setPosition(temppos);
+
+							temppos = zweiRandomZahl();
+							Coin3.setPosition(temppos);
+
+							coinsetzen = 0;
 						}
 
 						speedx = 0;
@@ -533,6 +586,7 @@ int main()
 										if (backtomenu.getGlobalBounds().contains(mousePos4.x, mousePos4.y))
 										{
 											Menugenerell = 0;
+											coinsetzen = 1;
 											escmenu = 0;
 											gas = 100;
 											player.setPosition(643, 554);
@@ -575,6 +629,9 @@ int main()
 						player.move(speedx, speedy);
 						window.clear();
 						window.draw(Boden);
+						window.draw(Coin1);
+						window.draw(Coin2);
+						window.draw(Coin3);
 						window.draw(player);
 						window.draw(GasIcon);
 						window.draw(CoinIcon);
