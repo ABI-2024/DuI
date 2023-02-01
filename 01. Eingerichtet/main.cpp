@@ -16,20 +16,20 @@ int main()
 	double speedx = 0; //Movement
 	double speedy = 0;
 
-	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
+	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das StartmenÃ¼ angezeigt
 
 	int wobinich = 5; //Position (Welche Karte geladen ist (1-9))
 
-	sf::Vector2f temppos; //Ist für die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
+	sf::Vector2f temppos; //Ist fÃ¼r die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
 
-	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
+	float gas = 100; //Treibstoff einstellbar (Je hÃ¶her deste mehr Tank hat man)
 
 	float damage = 100;
 
-	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
+	int richt = 3; //Ist fÃ¼r die Richtung wie die Textur des Autos ist da.
 
-	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 10 solang es noch keine Coins gibt.
-
+	int Coins = 100;  //Erstmal zum testen ist der Wert fÃ¼r Coins immer 10 solang es noch keine Coins gibt.
+  
 	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
 
 	sf::Texture Gas;
@@ -122,7 +122,7 @@ int main()
 	LogoMenu.setPosition(sf::Vector2f(490, 0));
 
 	sf::RectangleShape HintenGrau;
-	HintenGrau.setFillColor(sf::Color(69, 69, 69, 220)); //Hier kann mit der letzten Zahl die Opacity geändert werden.
+	HintenGrau.setFillColor(sf::Color(69, 69, 69, 220)); //Hier kann mit der letzten Zahl die Opacity geÃ¤ndert werden.
 	HintenGrau.setPosition(0, 0);
 	HintenGrau.setSize(sf::Vector2f(1280, 720));
 
@@ -209,7 +209,9 @@ int main()
 											gameover = 0;
 											coinsetzen = 1;
 											gas = 100;
+
 											damage = 100;
+                      
 											player.setPosition(643, 554);
 											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
@@ -601,13 +603,18 @@ int main()
 										if (backtomenu.getGlobalBounds().contains(mousePos4.x, mousePos4.y))
 										{
 											Menugenerell = 0;
+
 											coinsetzen = 1;
 											escmenu = 0;
 											gas = 100;
 											damage = 100;
+
+											escmenu = 0;
+											gas = 100;
+
 											player.setPosition(643, 554);
 											richt = 3;
-											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurückgesetzt auf Standart
+											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurÃ¼ckgesetzt auf Standart
 											player.setTexture(&Car);
 											wobinich = 5;
 											Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
@@ -623,7 +630,7 @@ int main()
 									}
 								}
 
-								//Esc-Menue (hier wird alles gedrawt was wärend dem Menü zusehen ist wenn man ESC drückt)
+								//Esc-Menue (hier wird alles gedrawt was wÃ¤rend dem MenÃ¼ zusehen ist wenn man ESC drÃ¼ckt)
 
 								window.draw(Boden);
 								window.draw(player);
@@ -640,7 +647,7 @@ int main()
 							}
 						}
 
-						//Das ist der Draw-Bereich wärend des Spiels
+						//Das ist der Draw-Bereich wÃ¤rend des Spiels
 
 						player.move(speedx, speedy);
 						window.clear();
@@ -695,7 +702,7 @@ int main()
 			}
 		}
 
-		// Hier ist der Startbirldschirm(Wo man den Mode oder Exit auswählt und das Logo zu sehen ist)
+		// Hier ist der Startbirldschirm(Wo man den Mode oder Exit auswÃ¤hlt und das Logo zu sehen ist)
 
 		window.clear();
 		window.draw(Boden); //Bosen ist das Rechteck wo die Map drauf geladen wird.
