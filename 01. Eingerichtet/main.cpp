@@ -4,7 +4,7 @@
 
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
-void motor(sf::Vector2f, int, sf::RenderWindow&);
+float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 
 int main()
 {
@@ -23,6 +23,8 @@ int main()
 	sf::Vector2f temppos; //Ist für die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
 
 	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
+
+	float damage = 100;
 
 	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
 
@@ -169,6 +171,8 @@ int main()
 	GameIsOver.setSize(sf::Vector2f(500, 200));
 	GameIsOver.setPosition(382, 60);
 
+	int gameover = 1;
+
 	while (window.isOpen())
 	{
 		sf::Event eventnormal;
@@ -186,8 +190,7 @@ int main()
 					Menugenerell = 1;
 					while (Menugenerell == 1)
 					{
-						if (gas <= 0) {
-							int gameover = 1;
+						if (gas <= 0 || damage <= 0) {
 							while (gameover == 1)
 							{
 								sf::Event eventgameover;
@@ -206,6 +209,7 @@ int main()
 											gameover = 0;
 											coinsetzen = 1;
 											gas = 100;
+											damage = 100;
 											player.setPosition(643, 554);
 											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
@@ -234,15 +238,15 @@ int main()
 							}
 						}
 
-						temppos = player.getPosition();
+						/*temppos = player.getPosition();
 
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
 							if (temppos.y > 18 && temppos.y < 702)
 							{
-								motor(temppos, wobinich, window);
+								damage = motor(temppos, wobinich, window, damage);
 							}
-						}
+						}*/
 
 						if (wobinich == 1)
 						{
@@ -600,6 +604,7 @@ int main()
 											coinsetzen = 1;
 											escmenu = 0;
 											gas = 100;
+											damage = 100;
 											player.setPosition(643, 554);
 											richt = 3;
 											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurückgesetzt auf Standart
@@ -639,11 +644,22 @@ int main()
 
 						player.move(speedx, speedy);
 						window.clear();
+
 						window.draw(Boden);
 						window.draw(Coin1);
 						window.draw(Coin2);
 						window.draw(Coin3);
 						window.draw(player);
+
+						temppos = player.getPosition();
+
+						if (temppos.x > 18 && temppos.x < 1262)
+						{
+							if (temppos.y > 20 && temppos.y < 700)
+							{
+								damage = motor(temppos, wobinich, window, damage);
+							}
+						}
 						window.draw(GasIcon);
 						window.draw(CoinIcon);
 						window.draw(CoinAnzahl);
