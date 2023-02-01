@@ -21,5 +21,8 @@
     <ClCompile Include="randomZahl.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="motor.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

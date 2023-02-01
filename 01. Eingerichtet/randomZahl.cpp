@@ -22,8 +22,8 @@ int randomZahl() {
 
 sf::Vector2f zweiRandomZahl() {
 
-    constexpr int MIN = 20;
-    constexpr int MAX = 1250;
+    constexpr int MIN = 30;
+    constexpr int MAX = 1240;
 
     constexpr int RAND_NUMS_TO_GENERATE = 1;
 

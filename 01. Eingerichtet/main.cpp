@@ -4,6 +4,7 @@
 
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
+void motor(sf::Vector2f, int);
 
 int main()
 {
@@ -230,6 +231,16 @@ int main()
 								window.draw(backtomenu);
 								window.draw(GameIsOver);
 								window.display();
+							}
+						}
+
+						temppos = player.getPosition();
+
+						if (temppos.x > 18 && temppos.x < 1262)
+						{
+							if (temppos.y > 18 && temppos.y < 702)
+							{
+								motor(temppos, wobinich);
 							}
 						}
 
