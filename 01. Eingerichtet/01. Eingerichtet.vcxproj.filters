@@ -18,7 +18,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="texturen.cpp">
+    <ClCompile Include="randomZahl.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="motor.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
