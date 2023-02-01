@@ -4,7 +4,7 @@
 
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
-void motor(sf::Vector2f, int);
+void motor(sf::Vector2f, int, sf::RenderWindow&);
 
 int main()
 {
@@ -240,7 +240,7 @@ int main()
 						{
 							if (temppos.y > 18 && temppos.y < 702)
 							{
-								motor(temppos, wobinich);
+								motor(temppos, wobinich, window);
 							}
 						}
 

@@ -4,28 +4,28 @@
 #include <random>
 
 using namespace std; 
-void motor(sf::Vector2f poss, int mapzahl) {
+void motor(sf::Vector2f poss, int mapzahl, sf::RenderWindow& fenster) {
 
-	//sf::Texture Motor;
-	//Motor.loadFromFile("ressources/motor.png");
+	sf::Texture Motor;
+	Motor.loadFromFile("ressources/motor.png");
 
-	//sf::RectangleShape MotorAnzeigeVoll;
-	//MotorAnzeigeVoll.setFillColor(sf::Color(107, 61, 4));
-	//MotorAnzeigeVoll.setOutlineThickness(1);
-	//MotorAnzeigeVoll.setOutlineColor(sf::Color::White);
-	//MotorAnzeigeVoll.setPosition(60, 40);
+	sf::RectangleShape MotorAnzeigeVoll;
+	MotorAnzeigeVoll.setFillColor(sf::Color(107, 61, 4));
+	MotorAnzeigeVoll.setOutlineThickness(1);
+	MotorAnzeigeVoll.setOutlineColor(sf::Color::White);
+	MotorAnzeigeVoll.setPosition(60, 60);
 
-	//sf::RectangleShape MotorVisRot2;
-	//MotorVisRot2.setFillColor(sf::Color(69, 69, 69));
-	//MotorVisRot2.setOutlineThickness(1);
-	//MotorVisRot2.setOutlineColor(sf::Color::White);
-	//MotorVisRot2.setSize(sf::Vector2f(100, 15));
-	//MotorVisRot2.setPosition(60, 40);
+	sf::RectangleShape MotorVisBraun2;
+	MotorVisBraun2.setFillColor(sf::Color(69, 69, 69));
+	MotorVisBraun2.setOutlineThickness(1);
+	MotorVisBraun2.setOutlineColor(sf::Color::White);
+	MotorVisBraun2.setSize(sf::Vector2f(100, 15));
+	MotorVisBraun2.setPosition(60, 60);
 
-	//sf::RectangleShape MotorIcon;
-	//MotorIcon.setTexture(&Motor);
-	//MotorIcon.setSize(sf::Vector2f(50, 50));
-	//MotorIcon.setPosition(20, 15);
+	sf::RectangleShape MotorIcon;
+	MotorIcon.setTexture(&Motor);
+	MotorIcon.setSize(sf::Vector2f(50, 50));
+	MotorIcon.setPosition(20, 35);
 
 	sf::Color Black = sf::Color::Black;
 	sf::Color White = sf::Color::White;
@@ -35,21 +35,20 @@ void motor(sf::Vector2f poss, int mapzahl) {
 	poss.x = poss.x / 4 + 5;
 	poss.y = poss.y / 4 + 5;
 
+	int damage = 0;
+
 	sf::Image Karte;
 	Karte.loadFromFile("ressources/map" + std::to_string(mapzahl) + ".png");
 	
 	sf::Color pixelcolor = Karte.getPixel(poss.x, poss.y);
 	if (pixelcolor != Black && pixelcolor != White && pixelcolor != Grey && pixelcolor != DarkGrey) {
-		cout << "Nicht auf der Strasse!" << endl;
+		damage += 0.04;
 	}
 
-	//if (pixelcolor != sf::Color::White && pixelcolor != sf::Color::Black)
-	//{
-	//	cout << "Nicht auf der Straße!";
-	//}
-	//else
-	//{
-	//	cout << "Auf der Straße";
-	//}
-
+	fenster.clear();
+	fenster.draw(MotorIcon);
+	MotorAnzeigeVoll.setSize(sf::Vector2f((damage), 35));
+	fenster.draw(MotorAnzeigeVoll);
+	fenster.draw(MotorVisBraun2);
+	fenster.display();
 }
