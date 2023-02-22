@@ -6,6 +6,7 @@ int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 int Tanken(sf::Vector2f, sf::RenderWindow&);
+int SamCoin(sf::Vector2f, sf::RenderWindow&);
 
 int main()
 {
@@ -662,6 +663,7 @@ int main()
 						temppos = player.getPosition();
 						Tanken(temppos, window);
 						gas = 100;
+						Coins = Coins + SamCoin(temppos, window);
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
 							if (temppos.y > 20 && temppos.y < 700)
