@@ -2,8 +2,18 @@
 #include <string>
 #include <iostream>
 
-int Tanken(sf::Vector2f, sf::RenderWindow&) {
+bool Tanken(sf::Vector2f playerPos, sf::RectangleShape player, sf::RenderWindow& fenster, int currentGas) {
+	sf::Texture Gas;
+	Gas.loadFromFile("ressources/Gas.png");
+	sf::RectangleShape GasStation;
+	GasStation.setTexture(&Gas);
+	GasStation.setSize(sf::Vector2f(30, 30));
+	GasStation.setPosition(890, 285);
 
-
-	return 100;
+	if (player.getGlobalBounds().intersects(GasStation.getGlobalBounds())) {
+		return 1;
+	}
+	
+	fenster.draw(GasStation);
+	
 }
