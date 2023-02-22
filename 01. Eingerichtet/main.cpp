@@ -7,6 +7,7 @@ sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 int Tanken(sf::Vector2f, sf::RenderWindow&);
 int SamCoin(sf::Vector2f, sf::RenderWindow&);
+int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*);
 
 int main()
 {
@@ -252,283 +253,6 @@ int main()
 							}
 						}*/
 
-						if (wobinich == 1)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1280)
-							{
-								player.setPosition(temppos.x - 1280, temppos.y);
-								wobinich = 2;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.x <= 0)
-							{
-								player.setPosition(temppos.x + 5, temppos.y);
-							}
-							if (temppos.y >= 686)
-							{
-								player.setPosition(temppos.x, temppos.y - 5);
-							}
-							if (temppos.y <= -24)
-							{
-								player.setPosition(temppos.x, temppos.y + 744);
-								wobinich = 4;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-						}
-						if (wobinich == 2)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1280)
-							{
-								player.setPosition(temppos.x - 1304, temppos.y);
-								wobinich = 3;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.x <= -24)
-							{
-								player.setPosition(temppos.x + 1304, temppos.y);
-								wobinich = 1;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y >= 686)
-							{
-								player.setPosition(temppos.x, temppos.y - 5);
-							}
-							if (temppos.y <= -24)
-							{
-								player.setPosition(temppos.x, temppos.y + 744);
-								wobinich = 5;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-						}
-						if (wobinich == 3)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1246)
-							{
-								player.setPosition(temppos.x - 5, temppos.y);
-							}
-							if (temppos.x <= -24)
-							{
-								player.setPosition(temppos.x + 1304, temppos.y);
-								wobinich = 2;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y >= 686)
-							{
-								player.setPosition(temppos.x, temppos.y - 5);
-							}
-							if (temppos.y <= -24)
-							{
-								player.setPosition(temppos.x, temppos.y + 744);
-								wobinich = 6;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-						}
-						if (wobinich == 4)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1280)
-							{
-								player.setPosition(temppos.x - 1304, temppos.y);
-								wobinich = 5;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.x <= 0)
-							{
-								player.setPosition(temppos.x + 5, temppos.y);
-							}
-							if (temppos.y >= 720)
-							{
-								player.setPosition(temppos.x, temppos.y - 744);
-								wobinich = 1;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y <= -24)
-							{
-								player.setPosition(temppos.x, temppos.y + 744);
-								wobinich = 7;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-						}
-						if (wobinich == 5)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1280)
-							{
-								player.setPosition(temppos.x - 1304, temppos.y);
-								wobinich = 6;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.x <= -24)
-							{
-								player.setPosition(temppos.x + 1304, temppos.y);
-								wobinich = 4;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y >= 720)
-							{
-								player.setPosition(temppos.x, temppos.y - 744);
-								wobinich = 2;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y <= -24)
-							{
-								player.setPosition(temppos.x, temppos.y + 744);
-								wobinich = 8;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-						}
-						if (wobinich == 6)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1246)
-							{
-								player.setPosition(temppos.x - 5, temppos.y);
-							}
-							if (temppos.x <= -24)
-							{
-								player.setPosition(temppos.x + 1304, temppos.y);
-								wobinich = 5;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y >= 720)
-							{
-								player.setPosition(temppos.x, temppos.y - 744);
-								wobinich = 3;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y <= -24)
-							{
-								player.setPosition(temppos.x, temppos.y + 744);
-								wobinich = 9;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-						}
-						if (wobinich == 7)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1280)
-							{
-								player.setPosition(temppos.x - 1304, temppos.y);
-								wobinich = 8;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.x <= 0)
-							{
-								player.setPosition(temppos.x + 5, temppos.y);
-							}
-							if (temppos.y >= 720)
-							{
-								player.setPosition(temppos.x, temppos.y - 744);
-								wobinich = 4;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y <= 0)
-							{
-								player.setPosition(temppos.x, temppos.y + 5);
-							}
-						}
-						if (wobinich == 8)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1280)
-							{
-								player.setPosition(temppos.x - 1304, temppos.y);
-								wobinich = 9;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.x <= -24)
-							{
-								player.setPosition(temppos.x + 1304, temppos.y);
-								wobinich = 7;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y >= 720)
-							{
-								player.setPosition(temppos.x, temppos.y - 744);
-								wobinich = 5;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y <= 0)
-							{
-								player.setPosition(temppos.x, temppos.y + 5);
-							}
-						}
-						if (wobinich == 9)
-						{
-							temppos = player.getPosition();
-							if (temppos.x >= 1246)
-							{
-								player.setPosition(temppos.x - 5, temppos.y);
-							}
-							if (temppos.x <= -24)
-							{
-								player.setPosition(temppos.x + 1304, temppos.y);
-								wobinich = 8;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y >= 720)
-							{
-								player.setPosition(temppos.x, temppos.y - 744);
-								wobinich = 6;
-								coinsetzen = 1;
-								Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
-								Boden.setTexture(&Map);
-							}
-							if (temppos.y <= 0)
-							{
-								player.setPosition(temppos.x, temppos.y + 5);
-							}
-						}
-
 						if (coinsetzen == 1)
 						{
 
@@ -654,16 +378,16 @@ int main()
 						player.move(speedx, speedy);
 						window.clear();
 
-						window.draw(Boden);
 						window.draw(Coin1);
 						window.draw(Coin2);
 						window.draw(Coin3);
-						window.draw(player);
+						//window.draw(player);
 
 						temppos = player.getPosition();
+						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map);
 						Tanken(temppos, window);
-						gas = 100;
 						Coins = Coins + SamCoin(temppos, window);
+
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
 							if (temppos.y > 20 && temppos.y < 700)
