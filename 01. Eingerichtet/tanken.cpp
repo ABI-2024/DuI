@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-bool Tanken(sf::Vector2f playerPos, sf::RectangleShape player, sf::RenderWindow& fenster, int currentGas) {
+bool Tanken(sf::RectangleShape player, sf::RenderWindow& fenster) {
 	sf::Texture Gas;
 	Gas.loadFromFile("ressources/Gas.png");
 	sf::RectangleShape GasStation;

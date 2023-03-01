@@ -5,7 +5,7 @@
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
-bool Tanken(sf::Vector2f,sf::RectangleShape, sf::RenderWindow&,int);
+bool Tanken(sf::RectangleShape, sf::RenderWindow&);
 int SamCoin(sf::Vector2f, sf::RenderWindow&);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*);
 
@@ -387,12 +387,11 @@ int main()
 						temppos = player.getPosition();
 
 						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map);
-						Tanken(temppos, window);
-						if (wobinich == 5)
+						if (wobinich == 5 && counter >= 350)
 						{
-							if (Tanken(temppos, player, window, gas) == true) {
-							gas = 100;
-
+							if (Tanken(player, window) == true) {
+								gas = 100;
+								counter = 0;
 							}
 						}
 
@@ -414,6 +413,7 @@ int main()
 
 
 						window.display();
+						counter++;
 					}
 				}
 			}
