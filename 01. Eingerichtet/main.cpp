@@ -6,7 +6,7 @@ int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 bool Tanken(sf::RectangleShape, sf::RenderWindow&);
-int SamCoin(sf::Vector2f, sf::RenderWindow&);
+int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*);
 
 int main()
@@ -244,31 +244,6 @@ int main()
 							}
 						}
 
-						/*temppos = player.getPosition();
-
-						if (temppos.x > 18 && temppos.x < 1262)
-						{
-							if (temppos.y > 18 && temppos.y < 702)
-							{
-								damage = motor(temppos, wobinich, window, damage);
-							}
-						}*/
-
-						if (coinsetzen == 1)
-						{
-
-							temppos = zweiRandomZahl();
-							Coin1.setPosition(temppos);
-
-							temppos = zweiRandomZahl();
-							Coin2.setPosition(temppos);
-
-							temppos = zweiRandomZahl();
-							Coin3.setPosition(temppos);
-
-							coinsetzen = 0;
-						}
-
 						speedx = 0;
 						speedy = 0;
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -395,7 +370,7 @@ int main()
 							}
 						}
 
-						Coins = Coins + SamCoin(temppos, window);
+						Coins = Coins + SamCoin(&player, temppos, window, coinsetzen);
 
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
