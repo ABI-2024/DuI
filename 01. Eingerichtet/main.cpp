@@ -5,7 +5,7 @@
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
-int Tanken(sf::Vector2f, sf::RenderWindow&);
+bool Tanken(sf::Vector2f,sf::RectangleShape, sf::RenderWindow&,int);
 int SamCoin(sf::Vector2f, sf::RenderWindow&);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*);
 
@@ -18,6 +18,7 @@ int main()
 
 	double speedx = 0; //Movement
 	double speedy = 0;
+	int counter = 0; //Um die Zeit von Tanken bis nächst möglichem Tanken timen zu können
 
 	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
 
@@ -384,8 +385,17 @@ int main()
 						//window.draw(player);
 
 						temppos = player.getPosition();
+
 						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map);
 						Tanken(temppos, window);
+						if (wobinich == 5)
+						{
+							if (Tanken(temppos, player, window, gas) == true) {
+							gas = 100;
+
+							}
+						}
+
 						Coins = Coins + SamCoin(temppos, window);
 
 						if (temppos.x > 18 && temppos.x < 1262)
