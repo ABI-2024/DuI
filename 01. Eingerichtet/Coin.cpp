@@ -1,7 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-#include "randomZahl.cpp"
+
+extern sf::Vector2f zweiRandomZahl();
 
 int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow& fenster, int coinsetzen) {
 
