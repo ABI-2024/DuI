@@ -6,7 +6,7 @@ int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 bool Tanken(sf::RectangleShape, sf::RenderWindow&);
-int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int);
+int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow*, int*);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*);
 
 int main()
@@ -157,18 +157,6 @@ int main()
 	CoinIcon.setTexture(&Coin);
 	CoinIcon.setSize(sf::Vector2f(45, 50));
 	CoinIcon.setPosition(1200, 15);
-
-	sf::RectangleShape Coin1;
-	Coin1.setTexture(&Coin);
-	Coin1.setSize(sf::Vector2f(25, 30));
-
-	sf::RectangleShape Coin2;
-	Coin2.setTexture(&Coin);
-	Coin2.setSize(sf::Vector2f(25, 30));
-
-	sf::RectangleShape Coin3;
-	Coin3.setTexture(&Coin);
-	Coin3.setSize(sf::Vector2f(25, 30));
 
 	sf::RectangleShape GameIsOver;
 	GameIsOver.setTexture(&GameOver);
@@ -354,9 +342,6 @@ int main()
 						player.move(speedx, speedy);
 						window.clear();
 
-						window.draw(Coin1);
-						window.draw(Coin2);
-						window.draw(Coin3);
 						//window.draw(player);
 
 						temppos = player.getPosition();
@@ -370,7 +355,7 @@ int main()
 							}
 						}
 
-						Coins = Coins + SamCoin(&player, temppos, window, coinsetzen);
+						Coins = Coins + SamCoin(&player, temppos, &window, &coinsetzen);
 
 						if (temppos.x > 18 && temppos.x < 1262)
 						{

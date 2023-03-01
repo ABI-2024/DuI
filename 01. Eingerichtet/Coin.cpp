@@ -4,7 +4,7 @@
 
 extern sf::Vector2f zweiRandomZahl();
 
-int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow& fenster, int coinsetzen) {
+int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow* fenster, int* coinsetzen) {
 
 	sf::Texture CoinTex;
 	CoinTex.loadFromFile("ressources/coin.png");
@@ -21,7 +21,9 @@ int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow& 
 	Coin3.setTexture(&CoinTex);
 	Coin3.setSize(sf::Vector2f(25, 30));
 
-	if (coinsetzen == 1)
+	int coinVal = 1;
+
+	if (*coinsetzen == 1)
 	{
 
 		temppos = zweiRandomZahl();
@@ -33,25 +35,25 @@ int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow& 
 		temppos = zweiRandomZahl();
 		Coin3.setPosition(temppos);
 
-		coinsetzen = 0;
+		*coinsetzen = 0;
 	}
 
 	if (player->getGlobalBounds().intersects(Coin1.getGlobalBounds())) {
 
-		return 1;
+		return coinVal;
 	}
 	if (player->getGlobalBounds().intersects(Coin2.getGlobalBounds())) {
 
-		return 1;
+		return coinVal;
 	}
 	if (player->getGlobalBounds().intersects(Coin3.getGlobalBounds())) {
 
-		return 1;
+		return coinVal;
 	}
 
-	fenster.draw(Coin1);
-	fenster.draw(Coin2);
-	fenster.draw(Coin3);
+	fenster->draw(Coin1);
+	fenster->draw(Coin2);
+	fenster->draw(Coin3);
 
 	return 0;
 }
