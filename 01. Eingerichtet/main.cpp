@@ -370,7 +370,7 @@ int main()
 							}
 						}
 
-						Coins = Coins + SamCoin(&player, temppos, window, coinsetzen);
+						//Coins = Coins + SamCoin(&player, temppos, window, coinsetzen);
 
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
