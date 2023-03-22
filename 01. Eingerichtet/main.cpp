@@ -6,8 +6,8 @@ int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 bool Tanken(sf::RectangleShape, sf::RenderWindow&);
-int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int);
-int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*);
+int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int*, sf::RectangleShape*, sf::RectangleShape*, sf::RectangleShape*);
+int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*, int*);
 
 int main()
 {
@@ -19,6 +19,9 @@ int main()
 	double speedx = 0; //Movement
 	double speedy = 0;
 	int counter = 0; //Um die Zeit von Tanken bis nächst möglichem Tanken timen zu können
+	int Coin1counter = 0;
+	int Coin2counter = 0;
+	int Coin3counter = 0;
 
 	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
 
@@ -42,8 +45,8 @@ int main()
 	sf::Texture Logo;
 	Logo.loadFromFile("ressources/Logo.png");
 
-	sf::Texture Coin;
-	Coin.loadFromFile("ressources/coin.png");
+	sf::Texture CoinTex;
+	CoinTex.loadFromFile("ressources/coin.png");
 
 	sf::Texture Car;
 	Car.loadFromFile("ressources/Car3.png");
@@ -154,20 +157,20 @@ int main()
 	GasIcon.setPosition(20, 15);
 
 	sf::RectangleShape CoinIcon;
-	CoinIcon.setTexture(&Coin);
+	CoinIcon.setTexture(&CoinTex);
 	CoinIcon.setSize(sf::Vector2f(45, 50));
 	CoinIcon.setPosition(1200, 15);
 
 	sf::RectangleShape Coin1;
-	Coin1.setTexture(&Coin);
+	Coin1.setTexture(&CoinTex);
 	Coin1.setSize(sf::Vector2f(25, 30));
 
 	sf::RectangleShape Coin2;
-	Coin2.setTexture(&Coin);
+	Coin2.setTexture(&CoinTex);
 	Coin2.setSize(sf::Vector2f(25, 30));
 
 	sf::RectangleShape Coin3;
-	Coin3.setTexture(&Coin);
+	Coin3.setTexture(&CoinTex);
 	Coin3.setSize(sf::Vector2f(25, 30));
 
 	sf::RectangleShape GameIsOver;
@@ -353,15 +356,11 @@ int main()
 
 						player.move(speedx, speedy);
 						window.clear();
-
-						window.draw(Coin1);
-						window.draw(Coin2);
-						window.draw(Coin3);
 						//window.draw(player);
 
 						temppos = player.getPosition();
 
-						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map);
+						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen);
 						if (wobinich == 5 && counter >= 350)
 						{
 							if (Tanken(player, window) == true) {
@@ -370,7 +369,9 @@ int main()
 							}
 						}
 
-						//Coins = Coins + SamCoin(&player, temppos, window, coinsetzen);
+						Coins = Coins + SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3);
+
+						std::cout << "Anzahl Münzen " << Coins << std::endl;
 
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
@@ -379,6 +380,9 @@ int main()
 								damage = motor(temppos, wobinich, window, damage);
 							}
 						}
+						window.draw(Coin1);
+						window.draw(Coin2);
+						window.draw(Coin3);
 						window.draw(GasIcon);
 						window.draw(CoinIcon);
 						window.draw(CoinAnzahl);

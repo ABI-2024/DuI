@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::RectangleShape* Boden, int* wobinich, sf::Texture *map) {
+int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::RectangleShape* Boden, int* wobinich, sf::Texture *map, int* coinsetzen) {
 	
 	sf::Vector2f temppos = player->getPosition();
 
@@ -13,6 +13,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x - 1280, temppos.y);
 			*wobinich = 2;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -28,6 +29,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y + 744);
 			*wobinich = 4;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -39,6 +41,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x - 1304, temppos.y);
 			*wobinich = 3;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -46,6 +49,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x + 1304, temppos.y);
 			*wobinich = 1;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -57,6 +61,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y + 744);
 			*wobinich = 5;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -72,6 +77,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x + 1304, temppos.y);
 			*wobinich = 2;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -83,6 +89,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y + 744);
 			*wobinich = 6;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -94,6 +101,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x - 1304, temppos.y);
 			*wobinich = 5;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -105,6 +113,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y - 744);
 			*wobinich = 1;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -112,6 +121,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y + 744);
 			*wobinich = 7;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -123,6 +133,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x - 1304, temppos.y);
 			*wobinich = 6;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -130,6 +141,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x + 1304, temppos.y);
 			*wobinich = 4;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -137,6 +149,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y - 744);
 			*wobinich = 2;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -144,6 +157,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y + 744);
 			*wobinich = 8;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -159,6 +173,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x + 1304, temppos.y);
 			*wobinich = 5;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -166,6 +181,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y - 744);
 			*wobinich = 3;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -173,6 +189,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y + 744);
 			*wobinich = 9;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -184,6 +201,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x - 1304, temppos.y);
 			*wobinich = 8;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -195,6 +213,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y - 744);
 			*wobinich = 4;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -210,6 +229,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x - 1304, temppos.y);
 			*wobinich = 9;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -217,6 +237,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x + 1304, temppos.y);
 			*wobinich = 7;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -224,6 +245,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y - 744);
 			*wobinich = 5;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -243,6 +265,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x + 1304, temppos.y);
 			*wobinich = 8;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
@@ -250,6 +273,7 @@ int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::Rect
 		{
 			player->setPosition(temppos.x, temppos.y - 744);
 			*wobinich = 6;
+			*coinsetzen = 1;
 			map->loadFromFile("ressources/map" + std::to_string(*wobinich) + ".png");
 			Boden->setTexture(&*map);
 		}
