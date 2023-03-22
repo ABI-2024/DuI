@@ -341,6 +341,7 @@ int main()
 								window.draw(player);
 								window.draw(GasIcon);
 								window.draw(CoinIcon);
+								CoinAnzahl.setString(std::to_string(Coins));
 								window.draw(CoinAnzahl);
 								GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 								window.draw(GasVisRot2);

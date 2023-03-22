@@ -33,6 +33,10 @@ float motor(sf::Vector2f poss, int mapzahl, sf::RenderWindow& fenster, float dam
 	static sf::Color Red = sf::Color(172, 50, 50);
 	static sf::Color DarkGrey = sf::Color(48, 45, 43);
 
+	static sf::Color Blau = sf::Color(91, 110, 225);
+	static sf::Color Blau2 = sf::Color(52, 69, 174);
+	static sf::Color Blau3 = sf::Color(2, 22, 139);
+
 	poss.x = poss.x / 4 + 5;
 	poss.y = poss.y / 4 + 5;
 
@@ -40,7 +44,10 @@ float motor(sf::Vector2f poss, int mapzahl, sf::RenderWindow& fenster, float dam
 	Karte.loadFromFile("ressources/map" + std::to_string(mapzahl) + ".png");
 	
 	sf::Color pixelcolor = Karte.getPixel(poss.x, poss.y);
-	if (pixelcolor != Black && pixelcolor != White && pixelcolor != Grey && pixelcolor != DarkGrey && pixelcolor != Red) {
+	if (pixelcolor == Blau || pixelcolor == Blau2 || pixelcolor == Blau3) {
+		damage -= 4;
+	}
+	else if (pixelcolor != Black && pixelcolor != White && pixelcolor != Grey && pixelcolor != DarkGrey && pixelcolor != Red) {
 		damage -= 0.04;
 	}
 
