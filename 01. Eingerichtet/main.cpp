@@ -6,7 +6,7 @@ int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 bool Tanken(sf::RectangleShape, sf::RenderWindow&);
-int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int*, sf::RectangleShape*, sf::RectangleShape*, sf::RectangleShape*);
+int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int*, sf::RectangleShape*, sf::RectangleShape*, sf::RectangleShape*, int*);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*, int*);
 
 int main()
@@ -19,9 +19,9 @@ int main()
 	double speedx = 0; //Movement
 	double speedy = 0;
 	int counter = 0; //Um die Zeit von Tanken bis nächst möglichem Tanken timen zu können
-	int Coin1counter = 0;
-	int Coin2counter = 0;
-	int Coin3counter = 0;
+	int Coincounter = 0;
+
+	int münzen = 0; //Welche Münze neu plaziert werden soll
 
 	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
 
@@ -35,7 +35,7 @@ int main()
 
 	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
 
-	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 10 solang es noch keine Coins gibt.
+	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 100 solang es noch keine Coins gibt.
   
 	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
 
@@ -369,7 +369,11 @@ int main()
 							}
 						}
 
-						Coins = Coins + SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3);
+						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
+						{
+							Coins++;
+							Coincounter = 0;
+						}
 
 						std::cout << "Anzahl Münzen " << Coins << std::endl;
 
@@ -385,6 +389,7 @@ int main()
 						window.draw(Coin3);
 						window.draw(GasIcon);
 						window.draw(CoinIcon);
+						CoinAnzahl.setString(std::to_string(Coins));
 						window.draw(CoinAnzahl);
 						GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 						window.draw(GasVisRot2);
@@ -393,6 +398,7 @@ int main()
 
 						window.display();
 						counter++;
+						Coincounter++;
 					}
 				}
 			}
