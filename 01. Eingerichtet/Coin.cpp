@@ -58,3 +58,4 @@ int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow& 
 	
 	return 0;
 }
+

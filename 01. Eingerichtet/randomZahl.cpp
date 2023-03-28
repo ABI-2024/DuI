@@ -35,9 +35,12 @@ sf::Vector2f zweiRandomZahl() {
 
     temp.x = distr(eng);
 
+    constexpr int MIN2 = 30;
+    constexpr int MAX2 = 680;
+
     random_device rd2;
     default_random_engine engg(rd2());
-    uniform_int_distribution<int> distrr(MIN, MAX);
+    uniform_int_distribution<int> distrr(MIN2, MAX2);
 
     temp.y = distrr(engg);
 

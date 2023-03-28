@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include <iostream>
 
@@ -15,6 +16,21 @@ int main()
 	window.setFramerateLimit(30);
 	sf::Font font;
 	font.loadFromFile("upheavtt.ttf");
+
+	sf::SoundBuffer coinsound;
+	coinsound.loadFromFile("sounds/coin.wav");
+	sf::SoundBuffer fuelsound;
+	fuelsound.loadFromFile("sounds/refillfuel.wav");
+	sf::Sound sound;
+	sound.setBuffer(coinsound);
+	sound.setVolume(10);
+
+	sf::Music backgroundmusic;
+	if (!backgroundmusic.openFromFile("sounds/music.wav"))
+		return -1;
+	backgroundmusic.setVolume(8);
+	backgroundmusic.play();
+	backgroundmusic.setLoop(true);
 
 	double speedx = 0; //Movement
 	double speedy = 0;
@@ -366,6 +382,9 @@ int main()
 						{
 							if (Tanken(player, window) == true) {
 								gas = 100;
+								sound.setBuffer(fuelsound);
+								sound.setVolume(40);
+								sound.play();
 								counter = 0;
 							}
 						}
@@ -373,10 +392,11 @@ int main()
 						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
 						{
 							Coins++;
+							sound.setBuffer(coinsound);
+							sound.setVolume(10);
+							sound.play();
 							Coincounter = 0;
 						}
-
-						std::cout << "Anzahl Münzen " << Coins << std::endl;
 
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
