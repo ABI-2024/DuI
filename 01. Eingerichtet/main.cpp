@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <string>
+#include <fstream>
 #include <iostream>
 
 int randomZahl();
@@ -18,19 +19,22 @@ int main()
 	font.loadFromFile("upheavtt.ttf");
 
 	sf::SoundBuffer coinsound;
-	coinsound.loadFromFile("sounds/coin.wav");
+	coinsound.loadFromFile("sounds/coin.wav"); //Sounds für Münzen
 	sf::SoundBuffer fuelsound;
 	fuelsound.loadFromFile("sounds/refillfuel.wav");
 	sf::Sound sound;
 	sound.setBuffer(coinsound);
 	sound.setVolume(10);
-
-	sf::Music backgroundmusic;
+	
+	sf::Music backgroundmusic; //Hintergrundmusik
 	if (!backgroundmusic.openFromFile("sounds/music.wav"))
 		return -1;
 	backgroundmusic.setVolume(8);
 	backgroundmusic.play();
 	backgroundmusic.setLoop(true);
+
+	std::ofstream inputFile; //Daten eingabe
+	std::ifstream outputFile; //Daten ausgeben von Daten.csv
 
 	double speedx = 0; //Movement
 	double speedy = 0;
@@ -51,7 +55,10 @@ int main()
 
 	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
 
-	int Coins = 100;  //Erstmal zum testen ist der Wert für Coins immer 100 solang es noch keine Coins gibt.
+	outputFile.open("data.scv");
+	int Coins = 0;  //Erstmal zum testen ist der Wert für Coins immer 100 solang es noch keine Coins gibt.
+	outputFile >> Coins;
+	outputFile.close();
   
 	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
 
@@ -391,7 +398,10 @@ int main()
 
 						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
 						{
+							inputFile.open("data.scv");
 							Coins++;
+							inputFile << Coins;
+							inputFile.close();
 							sound.setBuffer(coinsound);
 							sound.setVolume(10);
 							sound.play();
