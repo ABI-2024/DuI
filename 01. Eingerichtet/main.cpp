@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 
+void soundOnOff(sf::RenderWindow&);
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
@@ -389,6 +390,10 @@ int main()
 							}
 						}
 
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7)) {
+							soundOnOff(window);
+						}
+
 						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
 						{
 							Coins++;
@@ -405,6 +410,7 @@ int main()
 								damage = motor(temppos, wobinich, window, damage);
 							}
 						}
+
 						window.draw(Coin1);
 						window.draw(Coin2);
 						window.draw(Coin3);
@@ -444,6 +450,7 @@ int main()
 					window.close();
 				}
 			}
+			
 		}
 
 		// Hier ist der Startbirldschirm(Wo man den Mode oder Exit auswählt und das Logo zu sehen ist)

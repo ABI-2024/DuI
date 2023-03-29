@@ -148,6 +148,7 @@
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="motor.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="tanken.cpp" />
     <ClCompile Include="randomZahl.cpp" />
     <ClCompile Include="WoBinIch.cpp" />
