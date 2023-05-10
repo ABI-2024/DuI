@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-void soundOnOff(sf::RenderWindow&);
+int soundOnOff(sf::RenderWindow&);
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
@@ -11,8 +11,11 @@ bool Tanken(sf::RectangleShape, sf::RenderWindow&);
 int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int*, sf::RectangleShape*, sf::RectangleShape*, sf::RectangleShape*, int*);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*, int*);
 
+
 int main()
 {
+	
+	int ton = 8;
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "DrivingUnderTheInfluence");
 	window.setFramerateLimit(30);
 	sf::Font font;
@@ -29,7 +32,8 @@ int main()
 	sf::Music backgroundmusic;
 	if (!backgroundmusic.openFromFile("sounds/music.wav"))
 		return -1;
-	backgroundmusic.setVolume(8);
+	ton = soundOnOff(window);
+	backgroundmusic.setVolume(ton);
 	backgroundmusic.play();
 	backgroundmusic.setLoop(true);
 
@@ -194,6 +198,13 @@ int main()
 	GameIsOver.setTexture(&GameOver);
 	GameIsOver.setSize(sf::Vector2f(500, 200));
 	GameIsOver.setPosition(382, 60);
+
+	sf::Texture ButtonOn;
+	ButtonOn.loadFromFile("ressources/soundan.png");
+	sf::RectangleShape soundOn;
+	soundOn.setTexture(&ButtonOn);
+	soundOn.setSize(sf::Vector2f(45, 50));
+	soundOn.setPosition(1200, 640);
 
 	int gameover = 1;
 
@@ -390,7 +401,7 @@ int main()
 							}
 						}
 
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num7)) {
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
 							soundOnOff(window);
 						}
 
@@ -421,7 +432,9 @@ int main()
 						GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 						window.draw(GasVisRot2);
 						window.draw(GasAnzeigeVoll);
-
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) == false) {
+							window.draw(soundOn); //Zeile 200
+						}
 
 						window.display();
 						counter++;
@@ -463,7 +476,6 @@ int main()
 		window.draw(button); //(Normal-Mode Button)
 		window.draw(button2);
 		window.draw(button3);
-
 		window.draw(LogoMenu);
 
 		window.display();
