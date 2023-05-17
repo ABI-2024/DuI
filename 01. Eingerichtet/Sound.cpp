@@ -2,9 +2,9 @@
 #include <SFML/Audio.hpp>
 #include <string>
 #include <iostream>
-bool onOff = 0;//0=an 1=aus
 
-int soundOnOff(sf::RenderWindow& fenster) {
+
+void soundOnOff(sf::RenderWindow& fenster,sf::Sound* ton,sf::Music* musik,bool* soundOn,sf::Event* event) {
 	
 
 	sf::Texture ButtonOff;
@@ -14,13 +14,25 @@ int soundOnOff(sf::RenderWindow& fenster) {
 	soundOff.setSize(sf::Vector2f(45, 50));
 	soundOff.setPosition(1200, 640);
 
-	
-	
-	
-	
-	if (onOff == 1) {
-		fenster.draw(soundOff);
-		onOff = 0;
-		return 0;
-	}
+	sf::Event event;
+		
+		while (fenster.pollEvent(*event))
+		{
+			if (event->type == sf::Event::KeyPressed)
+			{
+				
+					if (soundOn)
+					{
+						ton->pause();
+						*soundOn = false;
+					}
+					else
+					{
+						ton->play();
+						*soundOn = true;
+					}
+				
+			}
+		}
+		
 }

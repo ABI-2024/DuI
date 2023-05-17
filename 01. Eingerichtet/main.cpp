@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-int soundOnOff(sf::RenderWindow&);
+void soundOnOff(sf::RenderWindow&, sf::Sound*,sf::Music*,bool*);
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
@@ -15,7 +15,7 @@ int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, in
 int main()
 {
 	
-	int ton = 8;
+	bool tonAn = true;
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "DrivingUnderTheInfluence");
 	window.setFramerateLimit(30);
 	sf::Font font;
@@ -32,8 +32,8 @@ int main()
 	sf::Music backgroundmusic;
 	if (!backgroundmusic.openFromFile("sounds/music.wav"))
 		return -1;
-	ton = soundOnOff(window);
-	backgroundmusic.setVolume(ton);
+
+	backgroundmusic.setVolume(8);
 	backgroundmusic.play();
 	backgroundmusic.setLoop(true);
 
@@ -401,9 +401,7 @@ int main()
 							}
 						}
 
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
-							soundOnOff(window);
-						}
+						
 
 						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
 						{
@@ -413,7 +411,10 @@ int main()
 							sound.play();
 							Coincounter = 0;
 						}
-
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+						{
+							soundOnOff(window, &sound, &backgroundmusic, &tonAn);
+						}
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
 							if (temppos.y > 20 && temppos.y < 700)
@@ -432,9 +433,7 @@ int main()
 						GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 						window.draw(GasVisRot2);
 						window.draw(GasAnzeigeVoll);
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) == false) {
-							window.draw(soundOn); //Zeile 200
-						}
+						
 
 						window.display();
 						counter++;
