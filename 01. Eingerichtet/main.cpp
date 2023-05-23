@@ -80,9 +80,6 @@ int main()
 	sf::Texture Car;
 	Car.loadFromFile("ressources/Car3.png");
 
-	sf::Texture ComingSoon;
-	ComingSoon.loadFromFile("ressources/ComingSoon.png");
-
 	sf::Texture Map;
 	Map.loadFromFile("ressources/map5.png");
 
