@@ -59,11 +59,11 @@ int main()
 
 	outputFile.open("data.scv");
 	int Coins = 0;  //Erstmal zum testen ist der Wert für Coins immer 100 solang es noch keine Coins gibt.
-	outputFile >> tcoins[5];
-	char tcoins[5] = eingabecoins.c_str;
-	for (int i = 0; i < 5; i++) {
-		tcoins[i] = tcoins[i] + 69;
-	}
+	outputFile >> Coins;
+	//char tcoins[5] = eingabecoins.c_str;
+	//for (int i = 0; i < 5; i++) {
+	//	tcoins[i] = tcoins[i] + 69;
+	//}
 	outputFile.close();
   
 	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
@@ -404,11 +404,12 @@ int main()
 						{
 							inputFile.open("data.scv");
 							Coins++;
-							eingabecoins = Coins;
-							char tcoins[5] = eingabecoins.c_str;
-							for (int i = 0; i < 5; i++) {
-								tcoins[i] = tcoins[i] + 69;
-							}
+							inputFile << Coins;
+							inputFile.close();
+							//char tcoins[5] = eingabecoins.c_str;
+							//for (int i = 0; i < 5; i++) {
+							//	tcoins[i] = tcoins[i] + 69;
+							//}
 
 
 
