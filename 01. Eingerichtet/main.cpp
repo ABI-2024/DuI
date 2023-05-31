@@ -58,7 +58,7 @@ int main()
 	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
 
 	outputFile.open("data.scv");
-	int Coins = 0;  //Erstmal zum testen ist der Wert für Coins immer 100 solang es noch keine Coins gibt.
+	int Coins = 0;  //Anzahl der Münzen beim ersten Start
 	outputFile >> Coins;
 	//char tcoins[5] = eingabecoins.c_str;
 	//for (int i = 0; i < 5; i++) {
@@ -221,7 +221,7 @@ int main()
 					Menugenerell = 1;
 					while (Menugenerell == 1)
 					{
-						if (gas <= 0 || damage <= 0) {
+						if (gas <= 0 || damage <= 0) { // Noch ein Fehler drin 
 							while (gameover == 1)
 							{
 								sf::Event eventgameover;
@@ -237,11 +237,12 @@ int main()
 										if (backtomenu.getGlobalBounds().contains(mousePos7.x, mousePos7.y))
 										{
 											Menugenerell = 0;
-											gameover = 0;
 											coinsetzen = 1;
 											gas = 100;
 
 											damage = 100;
+
+											gameover = 0;
                       
 											player.setPosition(643, 554);
 											richt = 3;
