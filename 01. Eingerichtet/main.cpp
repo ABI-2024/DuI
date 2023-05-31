@@ -387,10 +387,11 @@ int main()
 						temppos = player.getPosition();
 
 						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen);
-						if (wobinich == 5 && counter >= 350)
+						if (wobinich == 5 && counter >= 350 && Coins >= 5)
 						{
 							if (Tanken(player, window) == true) {
 								gas = 100;
+								Coins = Coins - 5;
 								sound.setBuffer(fuelsound);
 								sound.setVolume(40);
 								sound.play();
