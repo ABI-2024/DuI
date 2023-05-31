@@ -36,6 +36,8 @@ int main()
 	std::ofstream inputFile; //Daten eingabe
 	std::ifstream outputFile; //Daten ausgeben von Daten.csv
 
+	std::string eingabecoins;
+
 	double speedx = 0; //Movement
 	double speedy = 0;
 	int counter = 0; //Um die Zeit von Tanken bis nächst möglichem Tanken timen zu können
@@ -58,6 +60,10 @@ int main()
 	outputFile.open("data.scv");
 	int Coins = 0;  //Erstmal zum testen ist der Wert für Coins immer 100 solang es noch keine Coins gibt.
 	outputFile >> Coins;
+	//char tcoins[5] = eingabecoins.c_str;
+	//for (int i = 0; i < 5; i++) {
+	//	tcoins[i] = tcoins[i] + 69;
+	//}
 	outputFile.close();
   
 	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
@@ -74,18 +80,16 @@ int main()
 	sf::Texture Car;
 	Car.loadFromFile("ressources/Car3.png");
 
-	sf::Texture ComingSoon;
-	ComingSoon.loadFromFile("ressources/ComingSoon.png");
-
 	sf::Texture Map;
 	Map.loadFromFile("ressources/map5.png");
+
+	sf::Texture Übersicht;
+	Übersicht.loadFromFile("ressources/AlleKarten.png");
 
 	sf::Texture ButtonNor;
 	ButtonNor.loadFromFile("ressources/NormalButton.png");
 	sf::Texture ButtonEx;
 	ButtonEx.loadFromFile("ressources/ExitButton.png");
-	sf::Texture ButtonHard;
-	ButtonHard.loadFromFile("ressources/HardButton.png");
 	sf::Texture ButtonBackGame;
 	ButtonBackGame.loadFromFile("ressources/BackToGameButton.png");
 	sf::Texture ButtonBackMenu;
@@ -103,23 +107,15 @@ int main()
 	CoinAnzahl.setString(std::to_string(Coins));
 
 	sf::RectangleShape button(sf::Vector2f(200, 50));
-	button.setPosition(sf::Vector2f(490, 250));
+	button.setPosition(sf::Vector2f(490, 300));
 	button.setTexture(&ButtonNor);
 	button.setSize(sf::Vector2f(300, 50));
 	button.setFillColor(sf::Color(143, 143, 143));
 	button.setOutlineThickness(2);
 	button.setOutlineColor(sf::Color::Black);
 
-	sf::RectangleShape button2(sf::Vector2f(200, 50));
-	button2.setPosition(sf::Vector2f(490, 320));
-	button2.setTexture(&ButtonHard);
-	button2.setSize(sf::Vector2f(300, 50));
-	button2.setFillColor(sf::Color(143, 143, 143));
-	button2.setOutlineThickness(2);
-	button2.setOutlineColor(sf::Color::Black);
-
 	sf::RectangleShape button3(sf::Vector2f(200, 50));
-	button3.setPosition(sf::Vector2f(490, 390));
+	button3.setPosition(sf::Vector2f(490, 370));
 	button3.setTexture(&ButtonEx);
 	button3.setSize(sf::Vector2f(300, 50));
 	button3.setFillColor(sf::Color(143, 143, 143));
@@ -145,6 +141,11 @@ int main()
 	sf::RectangleShape Boden;
 	Boden.setTexture(&Map);
 	Boden.setSize(sf::Vector2f(1280, 720));
+
+	sf::RectangleShape Karte;
+	Karte.setTexture(&Übersicht);
+	Karte.setSize(sf::Vector2f(960, 540));
+	Karte.setPosition(sf::Vector2f(160, 90));
 
 	sf::RectangleShape LogoMenu;
 	LogoMenu.setTexture(&Logo);
@@ -402,6 +403,15 @@ int main()
 							Coins++;
 							inputFile << Coins;
 							inputFile.close();
+							//char tcoins[5] = eingabecoins.c_str;
+							//for (int i = 0; i < 5; i++) {
+							//	tcoins[i] = tcoins[i] + 69;
+							//}
+
+
+
+							inputFile << eingabecoins;
+							inputFile.close();
 							sound.setBuffer(coinsound);
 							sound.setVolume(10);
 							sound.play();
@@ -437,17 +447,6 @@ int main()
 			if (eventnormal.type == sf::Event::MouseButtonPressed &&
 				eventnormal.mouseButton.button == sf::Mouse::Left)
 			{
-				sf::Vector2i mousePos2 = sf::Mouse::getPosition(window);
-				if (button2.getGlobalBounds().contains(mousePos2.x, mousePos2.y))
-				{
-					button2.setFillColor(sf::Color(145, 0, 0));
-					button2.setTexture(&ComingSoon);
-				}
-			}
-
-			if (eventnormal.type == sf::Event::MouseButtonPressed &&
-				eventnormal.mouseButton.button == sf::Mouse::Left)
-			{
 				sf::Vector2i mousePos3 = sf::Mouse::getPosition(window);
 				if (button3.getGlobalBounds().contains(mousePos3.x, mousePos3.y))
 				{
@@ -464,7 +463,6 @@ int main()
 
 
 		window.draw(button); //(Normal-Mode Button)
-		window.draw(button2);
 		window.draw(button3);
 
 		window.draw(LogoMenu);
