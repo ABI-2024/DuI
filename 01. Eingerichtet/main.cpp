@@ -36,6 +36,8 @@ int main()
 
 	std::ofstream inputFile; //Daten eingabe
 	std::ifstream outputFile; //Daten ausgeben von Daten.csv
+	std::ofstream inputFile2; 
+	std::ifstream outputFile2;
 
 	std::string eingabecoins;
 
@@ -63,6 +65,11 @@ int main()
 	outputFile.open("data.scv");
 	int Coins = 0;  //Anzahl der Münzen beim ersten Start
 	outputFile >> Coins;
+	outputFile.close();
+
+	outputFile2.open("dataskin.scv");
+	outputFile2 >> carskin;
+
 	//char tcoins[5] = eingabecoins.c_str;
 	//for (int i = 0; i < 5; i++) {
 	//	tcoins[i] = tcoins[i] + 69;
@@ -209,6 +216,17 @@ int main()
 
 	while (window.isOpen())
 	{
+		richt = 3;
+		if (carskin == 0)
+		{
+			Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+		}
+		else
+		{
+			Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+		}
+		player.setTexture(&Car);
+
 		sf::Event eventnormal;
 		while (window.pollEvent(eventnormal))
 		{
@@ -454,7 +472,10 @@ int main()
 							if (shop(player, window) == true && Coins >= 100) {
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								player.setTexture(&Car);
+								inputFile2.open("dataskin.scv");
 								carskin = 1;
+								inputFile2 << carskin;
+								inputFile2.close();
 								inputFile.open("data.scv");
 								Coins = Coins - 100; //100 Münzen kostet der Tank
 								inputFile << Coins;
