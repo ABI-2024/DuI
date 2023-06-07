@@ -417,7 +417,10 @@ int main()
 							sound.play();
 							Coincounter = 0;
 						}
-
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+						{
+							soundOnOff(window, &sound, &backgroundmusic, &tonAn);
+						}
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
 							if (temppos.y > 20 && temppos.y < 700)

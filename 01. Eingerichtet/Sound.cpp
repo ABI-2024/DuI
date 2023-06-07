@@ -2,7 +2,6 @@
 #include <SFML/Audio.hpp>
 #include <string>
 #include <iostream>
-bool onOff = 0;//0=an 1=aus
 
 int soundOnOff(sf::RenderWindow& fenster,bool& ip,sf::Music& backgroundmusic) {
 	
