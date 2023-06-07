@@ -8,6 +8,7 @@ int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
 bool Tanken(sf::RectangleShape, sf::RenderWindow&);
+bool shop(sf::RectangleShape, sf::RenderWindow&);
 int SamCoin(sf::RectangleShape*, sf::Vector2f, sf::RenderWindow&, int*, sf::RectangleShape*, sf::RectangleShape*, sf::RectangleShape*, int*);
 int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, int*, sf::Texture*, int*);
 
@@ -47,9 +48,11 @@ int main()
 
 	int Menugenerell = 1; //Wenn Menugenerell 1 ist, wird das Startmenü angezeigt
 
+	int carskin = 0; // Wenn 0 = standartskin bei 1 gold skin!
+
 	int wobinich = 5; //Position (Welche Karte geladen ist (1-9))
 
-	sf::Vector2f temppos; //Ist für die Position im Normal-Mode (also auf welcher Karte man sich befindet da)
+	sf::Vector2f temppos; //Ist für die Position im Spiel (also auf welcher Karte man sich befindet) da.
 
 	float gas = 100; //Treibstoff einstellbar (Je höher deste mehr Tank hat man)
 
@@ -222,6 +225,7 @@ int main()
 					while (Menugenerell == 1)
 					{
 						if (gas <= 0 || damage <= 0) { // Noch ein Fehler drin 
+							gameover = 1;		//Damit das Gameover menu nicht flackert.
 							while (gameover == 1)
 							{
 								sf::Event eventgameover;
@@ -239,19 +243,23 @@ int main()
 											Menugenerell = 0;
 											coinsetzen = 1;
 											gas = 100;
-
 											damage = 100;
-
 											gameover = 0;
-                      
+											counter = 0;
 											player.setPosition(643, 554);
 											richt = 3;
-											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+											if (carskin == 0)
+											{
+												Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+											}
+											else
+											{
+												Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+											}
 											player.setTexture(&Car);
 											wobinich = 5;
 											Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
 											Boden.setTexture(&Map);
-
 										}
 									}
 								}
@@ -278,7 +286,14 @@ int main()
 						{
 							richt = 1;
 							speedx -= 5;
-							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							if (carskin == 0)
+							{
+								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							}
+							else
+							{
+								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+							}
 							player.setTexture(&Car);
 							gas -= 0.04;
 						}
@@ -286,7 +301,14 @@ int main()
 						{
 							richt = 2;
 							speedx += 5;
-							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							if (carskin == 0)
+							{
+								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							}
+							else
+							{
+								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+							}
 							player.setTexture(&Car);
 							gas -= 0.04;
 						}
@@ -296,7 +318,14 @@ int main()
 						{
 							richt = 3;
 							speedy -= 5;
-							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							if (carskin == 0)
+							{
+								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							}
+							else
+							{
+								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+							}
 							player.setTexture(&Car);
 							gas -= 0.04;
 						}
@@ -304,7 +333,14 @@ int main()
 						{
 							richt = 4;
 							speedy += 5;
-							Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							if (carskin == 0)
+							{
+								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+							}
+							else
+							{
+								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+							}
 							player.setTexture(&Car);
 							gas -= 0.04;
 						}
@@ -344,7 +380,14 @@ int main()
 
 											player.setPosition(643, 554);
 											richt = 3;
-											Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png"); //Hier werden die Texturen zurückgesetzt auf Standart
+											if (carskin == 0)
+											{
+												Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");	//Hier werden die Texturen zurückgesetzt auf Standart
+											}
+											else
+											{
+												Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");	//Hier werden die Texturen zurückgesetzt auf Standart
+											}							
 											player.setTexture(&Car);
 											wobinich = 5;
 											Map.loadFromFile("ressources/map" + std::to_string(wobinich) + ".png");
@@ -387,11 +430,27 @@ int main()
 						temppos = player.getPosition();
 
 						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen);
-						if (wobinich == 5 && counter >= 350 && Coins >= 5)
+						if (wobinich == 5 && counter >= 350)
 						{
-							if (Tanken(player, window) == true) {
+							if (Tanken(player, window) == true && Coins >= 5) {
 								gas = 100;
+								inputFile.open("data.scv");
 								Coins = Coins - 5; //5 Münzen kostet der Tank
+								inputFile << Coins;
+								inputFile.close();
+								sound.setBuffer(fuelsound);
+								sound.setVolume(40);
+								sound.play();
+								counter = 0;
+							}
+
+							if (shop(player, window) == true && Coins >= 100) {
+								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+								player.setTexture(&Car);
+								inputFile.open("data.scv");
+								Coins = Coins - 100; //100 Münzen kostet der Tank
+								inputFile << Coins;
+								inputFile.close();
 								sound.setBuffer(fuelsound);
 								sound.setVolume(40);
 								sound.play();
