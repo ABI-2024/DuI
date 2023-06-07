@@ -419,7 +419,7 @@ int main()
 						}
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
 						{
-							soundOnOff(window, &sound, &backgroundmusic, &tonAn);
+							soundOnOff(window, ip, backgroundmusic);
 						}
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
