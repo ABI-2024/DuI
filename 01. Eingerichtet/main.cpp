@@ -285,14 +285,15 @@ int main()
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 						{
 							richt = 1;
-							speedx -= 5;
 							if (carskin == 0)
 							{
 								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+								speedx -= 5;
 							}
 							else
 							{
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+								speedx -= 7;
 							}
 							player.setTexture(&Car);
 							gas -= 0.04;
@@ -300,14 +301,15 @@ int main()
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 						{
 							richt = 2;
-							speedx += 5;
 							if (carskin == 0)
 							{
 								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+								speedx += 5;
 							}
 							else
 							{
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+								speedx += 7;
 							}
 							player.setTexture(&Car);
 							gas -= 0.04;
@@ -317,14 +319,15 @@ int main()
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 						{
 							richt = 3;
-							speedy -= 5;
 							if (carskin == 0)
 							{
 								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+								speedy -= 5;
 							}
 							else
 							{
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+								speedy -= 7;
 							}
 							player.setTexture(&Car);
 							gas -= 0.04;
@@ -332,14 +335,15 @@ int main()
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 						{
 							richt = 4;
-							speedy += 5;
 							if (carskin == 0)
 							{
 								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+								speedy += 5;
 							}
 							else
 							{
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+								speedy += 7;
 							}
 							player.setTexture(&Car);
 							gas -= 0.04;
@@ -443,18 +447,21 @@ int main()
 								sound.play();
 								counter = 0;
 							}
+						}
+						if (wobinich == 5 && carskin == 0)
+						{
 
 							if (shop(player, window) == true && Coins >= 100) {
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								player.setTexture(&Car);
+								carskin = 1;
 								inputFile.open("data.scv");
 								Coins = Coins - 100; //100 Münzen kostet der Tank
 								inputFile << Coins;
 								inputFile.close();
-								sound.setBuffer(fuelsound);
+								/*sound.setBuffer(fuelsound); Fehlt noch der SOUND! Heiliger Sound
 								sound.setVolume(40);
-								sound.play();
-								counter = 0;
+								sound.play();*/
 							}
 						}
 
