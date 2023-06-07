@@ -4,7 +4,7 @@
 #include <iostream>
 bool onOff = 0;//0=an 1=aus
 
-int soundOnOff(sf::RenderWindow& fenster) {
+int soundOnOff(sf::RenderWindow& fenster,bool& ip,sf::Music& backgroundmusic) {
 	
 
 	sf::Texture ButtonOff;
@@ -13,14 +13,15 @@ int soundOnOff(sf::RenderWindow& fenster) {
 	soundOff.setTexture(&ButtonOff);
 	soundOff.setSize(sf::Vector2f(45, 50));
 	soundOff.setPosition(1200, 640);
-
 	
 	
-	
-	
-	if (onOff == 1) {
+	if (ip == 1) {
 		fenster.draw(soundOff);
-		onOff = 0;
+		backgroundmusic.pause();
 		return 0;
+	}
+	else {
+		backgroundmusic.play();
+		return 8;
 	}
 }

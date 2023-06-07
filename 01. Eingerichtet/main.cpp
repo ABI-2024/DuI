@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-int soundOnOff(sf::RenderWindow&);
+int soundOnOff(sf::RenderWindow&,bool&,sf::Music&);
 int randomZahl();
 sf::Vector2f zweiRandomZahl();
 float motor(sf::Vector2f, int, sf::RenderWindow&, float);
@@ -15,7 +15,8 @@ int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, in
 int main()
 {
 	
-	int ton = 8;
+	int ton = 10;
+	bool ip = 0;
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "DrivingUnderTheInfluence");
 	window.setFramerateLimit(30);
 	sf::Font font;
@@ -32,9 +33,15 @@ int main()
 	sf::Music backgroundmusic;
 	if (!backgroundmusic.openFromFile("sounds/music.wav"))
 		return -1;
-	ton = soundOnOff(window);
+	
+
+	
+	
+	
 	backgroundmusic.setVolume(ton);
 	backgroundmusic.play();
+	
+
 	backgroundmusic.setLoop(true);
 
 	double speedx = 0; //Movement
@@ -401,9 +408,6 @@ int main()
 							}
 						}
 
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
-							soundOnOff(window);
-						}
 
 						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
 						{
@@ -432,10 +436,19 @@ int main()
 						GasAnzeigeVoll.setSize(sf::Vector2f((gas), 15));
 						window.draw(GasVisRot2);
 						window.draw(GasAnzeigeVoll);
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
+							ip = 1;
+						}
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)and ip==1) {
+							ip = 0;
+						}
+						if(ip==1){
+							soundOnOff(window,ip,backgroundmusic);
+						}
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) == false) {
 							window.draw(soundOn); //Zeile 200
 						}
-
+					
 						window.display();
 						counter++;
 						Coincounter++;
@@ -474,7 +487,7 @@ int main()
 
 
 		window.draw(button); //(Normal-Mode Button)
-		window.draw(button2);
+		//window.draw(button2);
 		window.draw(button3);
 		window.draw(LogoMenu);
 
