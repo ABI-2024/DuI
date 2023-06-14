@@ -8,7 +8,7 @@ bool shop(sf::RectangleShape player, sf::RenderWindow& fenster) {
 	sf::RectangleShape CartShop;
 	CartShop.setTexture(&Cart);
 	CartShop.setSize(sf::Vector2f(30, 30));
-	CartShop.setPosition(390, 285);
+	CartShop.setPosition(370, 285);
 
 	if (player.getGlobalBounds().intersects(CartShop.getGlobalBounds())) {
 		return 1;
