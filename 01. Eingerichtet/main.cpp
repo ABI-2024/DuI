@@ -14,7 +14,7 @@ int PossitionMap(sf::RenderWindow&, sf::RectangleShape*, sf::RectangleShape*, in
 
 int main()
 {
-	
+	sf::Event hintergrundmusik;
 	bool tonAn = true;
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "DrivingUnderTheInfluence");
 	window.setFramerateLimit(30);
@@ -411,10 +411,35 @@ int main()
 							sound.play();
 							Coincounter = 0;
 						}
-						if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+						
+						while (window.pollEvent(hintergrundmusik))
 						{
-							soundOnOff(window, &sound, &backgroundmusic, &tonAn);
+							if (hintergrundmusik.type == sf::Event::Closed)
+							{
+								// Schließe das Fenster, wenn das Schließen-Ereignis auftritt
+								window.close();
+							}
+							else if (hintergrundmusik.type == sf::Event::KeyPressed)
+							{
+								if (hintergrundmusik.key.code == sf::Keyboard::T)
+								{
+									// P-Taste gedrückt, um die Musik zu pausieren oder fortzusetzen
+									if (backgroundmusic.getStatus() == sf::SoundSource::Playing)
+									{
+										backgroundmusic.pause(); // Pause
+									}
+									else if (backgroundmusic.getStatus() == sf::SoundSource::Paused)
+									{
+										backgroundmusic.play(); // Fortsetzen
+									
+									}
+								}
+							}
 						}
+					
+						
+							
+					
 						if (temppos.x > 18 && temppos.x < 1262)
 						{
 							if (temppos.y > 20 && temppos.y < 700)

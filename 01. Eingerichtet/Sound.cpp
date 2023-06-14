@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-void soundOnOff(sf::RenderWindow& fenster,sf::Sound* ton,sf::Music* musik,bool* soundOn,sf::Event* event) {
+void soundOnOff(sf::RenderWindow& fenster,sf::Sound* ton,sf::Music* musik,bool* soundOn) {
 	
 
 	sf::Texture ButtonOff;
@@ -13,26 +13,17 @@ void soundOnOff(sf::RenderWindow& fenster,sf::Sound* ton,sf::Music* musik,bool* 
 	soundOff.setTexture(&ButtonOff);
 	soundOff.setSize(sf::Vector2f(45, 50));
 	soundOff.setPosition(1200, 640);
-
-	sf::Event event;
-		
-		while (fenster.pollEvent(*event))
-		{
-			if (event->type == sf::Event::KeyPressed)
-			{
 				
-					if (soundOn)
-					{
-						ton->pause();
-						*soundOn = false;
-					}
-					else
-					{
-						ton->play();
-						*soundOn = true;
-					}
+	if (soundOn)
+	{
+		ton->pause();
+		*soundOn = false;
+	}
+	else
+	{
+		ton->play();
+		*soundOn = true;
+	}
 				
-			}
-		}
 		
 }
