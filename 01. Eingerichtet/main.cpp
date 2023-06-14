@@ -185,6 +185,7 @@ int main()
 	sf::RectangleShape player;
 	player.setTexture(&Car);
 	player.setSize(sf::Vector2f(36, 36));
+	player.setOrigin(player.getSize() / 2.f);
 	player.setPosition(643, 554);
 
 	sf::RectangleShape GasIcon;
@@ -304,68 +305,88 @@ int main()
 						speedy = 0;
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 						{
-							richt = 1;
 							if (carskin == 0)
 							{
-								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 								speedx -= 5;
 							}
 							else
 							{
-								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								speedx -= 7;
 							}
-							player.setTexture(&Car);
+							player.setRotation(270);
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+							{
+								player.setRotation(320);
+							}
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+							{
+								player.setRotation(230);
+							}
 							gas -= 0.04;
 						}
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 						{
-							richt = 2;
 							if (carskin == 0)
 							{
-								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 								speedx += 5;
 							}
 							else
 							{
-								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								speedx += 7;
 							}
-							player.setTexture(&Car);
+							player.setRotation(90);
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+							{
+								player.setRotation(45);
+							}
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+							{
+								player.setRotation(135);
+							}
 							gas -= 0.04;
 						}
 
 
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 						{
-							richt = 3;
 							if (carskin == 0)
 							{
-								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 								speedy -= 5;
 							}
 							else
 							{
-								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								speedy -= 7;
 							}
-							player.setTexture(&Car);
+							player.setRotation(0);
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+							{
+								player.setRotation(320);
+							}
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+							{
+								player.setRotation(45);
+							}
 							gas -= 0.04;
 						}
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 						{
-							richt = 4;
 							if (carskin == 0)
 							{
-								Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
 								speedy += 5;
 							}
 							else
 							{
-								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								speedy += 7;
 							}
-							player.setTexture(&Car);
+							player.setRotation(180);
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+							{
+								player.setRotation(230);
+							}
+							if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+							{
+								player.setRotation(135);
+							}
 							gas -= 0.04;
 						}
 
