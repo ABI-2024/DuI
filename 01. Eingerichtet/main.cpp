@@ -68,12 +68,7 @@ int main()
 	outputFile.close();
 
 	outputFile2.open("dataskin.scv");
-	outputFile2 >> carskin;
-
-	//char tcoins[5] = eingabecoins.c_str;
-	//for (int i = 0; i < 5; i++) {
-	//	tcoins[i] = tcoins[i] + 69;
-	//}
+	outputFile2 >> carskin; //Speichert ob man das Goldene Auto hat oder nicht 1 = ja man hats, 0 = normales Auto
 	outputFile.close();
   
 	int coinsetzen = 1; //Wenn dies 1 ist werden neue Coins gespawn bei 0 wird eine IF Funktion geskippt.
@@ -520,13 +515,8 @@ int main()
 							Coincounter = 0;
 						}
 
-						if (temppos.x > 18 && temppos.x < 1262)
-						{
-							if (temppos.y > 20 && temppos.y < 700)
-							{
-								damage = motor(temppos, wobinich, window, damage); //Sorgt für Schaden am Auto, überprüft auf welcher Farbe das Auto fährt und sorgt für Schaden
-							}
-						}
+						damage = motor(temppos, wobinich, window, damage); //Sorgt für Schaden am Auto, überprüft auf welcher Farbe das Auto fährt und sorgt für Schaden
+
 						window.draw(Coin1);
 						window.draw(Coin2);
 						window.draw(Coin3);

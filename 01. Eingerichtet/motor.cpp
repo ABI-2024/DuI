@@ -40,20 +40,33 @@ float motor(sf::Vector2f poss, int mapzahl, sf::RenderWindow& fenster, float dam
 	static sf::Color Blau5 = sf::Color(73, 73, 228);
 	static sf::Color Blau6 = sf::Color(85, 85, 228);
 
-	poss.x = poss.x / 4 + 5;
-	poss.y = poss.y / 4 + 5;
+	sf::Vector2f posspixel = poss;
+	sf::Vector2f possposi = poss;
+
+	posspixel.x = posspixel.x / 4;
+	posspixel.y = posspixel.y / 4;
 
 	sf::Image Karte;
 	Karte.loadFromFile("ressources/map" + std::to_string(mapzahl) + ".png");
 	
-	sf::Color pixelcolor = Karte.getPixel(poss.x, poss.y);
-	if (pixelcolor == Blau || pixelcolor == Blau2 || pixelcolor == Blau3 || pixelcolor == Blau4 || pixelcolor == Blau5 || pixelcolor == Blau6) {
-		damage -= 4;
+	if (possposi.x > 20 && possposi.x < 1260)
+	{
+		if (possposi.y > 20 && possposi.y < 700)
+		{
+			sf::Color pixelcolor = Karte.getPixel(posspixel.x, posspixel.y);
+			if (pixelcolor == Blau || pixelcolor == Blau2 || pixelcolor == Blau3 || pixelcolor == Blau4 || pixelcolor == Blau5 || pixelcolor == Blau6) {
+				damage -= 4;
+			}
+			else if (pixelcolor != Black && pixelcolor != White && pixelcolor != Grey && pixelcolor != DarkGrey && pixelcolor != Red) {
+				damage -= 0.04;
+			}
+		}
 	}
-	else if (pixelcolor != Black && pixelcolor != White && pixelcolor != Grey && pixelcolor != DarkGrey && pixelcolor != Red) {
-		damage -= 0.04;
+	else
+	{
+		damage -= 0.02;
 	}
-
+	
 	fenster.draw(MotorIcon);
 	MotorAnzeigeVoll.setSize(sf::Vector2f((damage), 15));
 	fenster.draw(MotorVisBraun2);
