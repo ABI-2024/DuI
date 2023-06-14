@@ -4,7 +4,7 @@
 
 int PossitionMap(sf::RenderWindow& fenster, sf::RectangleShape* player, sf::RectangleShape* Boden, int* wobinich, sf::Texture *map, int* coinsetzen) {
 	
-	sf::Vector2f temppos = player->getPosition();
+	sf::Vector2f temppos = player->getPosition(); //Überprüft auf welcher Karte das Auto ist und wenn es am Rand ist, wechselt es den Abschnitt
 
 	if (*wobinich == 1)
 	{

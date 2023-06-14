@@ -23,6 +23,8 @@ int main()
 	coinsound.loadFromFile("sounds/coin.wav"); //Sounds für Münzen
 	sf::SoundBuffer fuelsound;
 	fuelsound.loadFromFile("sounds/refillfuel.wav");
+	sf::SoundBuffer holysound;
+	holysound.loadFromFile("sounds/holy.wav");
 	sf::Sound sound;
 	sound.setBuffer(coinsound);
 	sound.setVolume(10);
@@ -451,10 +453,10 @@ int main()
 
 						temppos = player.getPosition();
 
-						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen); //Sorgt für das wechseln der Kartenabschnitte 
+						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen); //Sorgt für das wechseln der Kartenabschnitte, im Numpad Layout werden die Karten je nach Position gewechset
 						if (wobinich == 5 && counter >= 350 && Coins >= 5)
 						{
-							if (Tanken(player, window) == true && Coins >= 5) { //Funktion für das Tanken, kostet 5 Münzen und hat einen cooldown
+							if (Tanken(player, window) == true && Coins >= 5) { //Funktion für das Tanken, kostet 5 Münzen und hat einen Cooldown
 								gas = 100;
 								inputFile.open("data.scv");
 								Coins = Coins - 5; //5 Münzen kostet der Tank
@@ -469,7 +471,7 @@ int main()
 						if (wobinich == 5 && carskin == 0)
 						{
 
-							if (shop(player, window) == true && Coins >= 100) {   //Shop ist immer da, klappt aber erst wenn man 100 Münzen hat
+							if (shop(player, window) == true && Coins >= 100) {   //Shop ist immer da, klappt aber erst wenn man 100 Münzen hat. Wenn Funktion ausgeführt, 100 Münzen werden abgezogen und neue Auto Textur wird geladen.
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								player.setTexture(&Car);
 								inputFile2.open("dataskin.scv");
@@ -480,13 +482,13 @@ int main()
 								Coins = Coins - 100; //100 Münzen kostet der Tank
 								inputFile << Coins;
 								inputFile.close();
-								/*sound.setBuffer(fuelsound); Fehlt noch der SOUND! Heiliger Sound
+								sound.setBuffer(holysound);
 								sound.setVolume(40);
-								sound.play();*/
+								sound.play();
 							}
 						}
 
-						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20) //Funktion zum Sammeln von Münzen
+						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20) //Funktion zum Sammeln von Münzen, vergleicht Positionen vom Auto und den Münzen
 						{
 							inputFile.open("data.scv");
 							Coins++;
@@ -504,7 +506,7 @@ int main()
 						{
 							if (temppos.y > 20 && temppos.y < 700)
 							{
-								damage = motor(temppos, wobinich, window, damage); //Sorgt für Schaden am Auto
+								damage = motor(temppos, wobinich, window, damage); //Sorgt für Schaden am Auto, überprüft auf welcher Farbe das Auto fährt und sorgt für Schaden
 							}
 						}
 						window.draw(Coin1);
