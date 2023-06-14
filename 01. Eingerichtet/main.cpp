@@ -62,8 +62,6 @@ int main()
 
 	float damage = 100;
 
-	int richt = 3; //Ist für die Richtung wie die Textur des Autos ist da.
-
 	outputFile.open("data.scv");
 	int Coins = 0;  //Anzahl der Münzen beim ersten Start
 	outputFile >> Coins;
@@ -90,7 +88,7 @@ int main()
 	CoinTex.loadFromFile("ressources/coin.png");
 
 	sf::Texture Car;
-	Car.loadFromFile("ressources/Car3.png");
+	Car.loadFromFile("ressources/Car.png");
 
 	sf::Texture Map;
 	Map.loadFromFile("ressources/map5.png");
@@ -219,14 +217,13 @@ int main()
 
 	while (window.isOpen())
 	{
-		richt = 3;
 		if (carskin == 0)
 		{
-			Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+			Car.loadFromFile("ressources/car.png");
 		}
 		else
 		{
-			Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+			Car.loadFromFile("ressources/gcar.png");
 		}
 		player.setTexture(&Car);
 
@@ -268,14 +265,14 @@ int main()
 											gameover = 0;
 											counter = 0;
 											player.setPosition(643, 554);
-											richt = 3;
+											player.setRotation(0);
 											if (carskin == 0)
 											{
-												Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");
+												Car.loadFromFile("ressources/car.png");
 											}
 											else
 											{
-												Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+												Car.loadFromFile("ressources/gcar.png");
 											}
 											player.setTexture(&Car);
 											wobinich = 5;
@@ -424,14 +421,14 @@ int main()
 											gas = 100;
 
 											player.setPosition(643, 554);
-											richt = 3;
+											player.setRotation(0);
 											if (carskin == 0)
 											{
-												Car.loadFromFile("ressources/car" + std::to_string(richt) + ".png");	//Hier werden die Texturen zurückgesetzt auf Standart
+												Car.loadFromFile("ressources/car.png");	//Hier werden die Texturen zurückgesetzt auf Standart
 											}
 											else
 											{
-												Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");	//Hier werden die Texturen zurückgesetzt auf Standart
+												Car.loadFromFile("ressources/gcar.png");	//Hier werden die Texturen zurückgesetzt auf Standart
 											}							
 											player.setTexture(&Car);
 											wobinich = 5;
@@ -493,7 +490,7 @@ int main()
 						{
 
 							if (shop(player, window) == true && Coins >= 100) {   //Shop ist immer da, klappt aber erst wenn man 100 Münzen hat. Wenn Funktion ausgeführt, 100 Münzen werden abgezogen und neue Auto Textur wird geladen.
-								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
+								Car.loadFromFile("ressources/gcar.png");
 								player.setTexture(&Car);
 								inputFile2.open("dataskin.scv");
 								carskin = 1;
