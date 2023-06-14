@@ -452,7 +452,7 @@ int main()
 						temppos = player.getPosition();
 
 						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen);
-						if (wobinich == 5 && counter >= 350)
+						if (wobinich == 5 && counter >= 350 && Coins >= 5)
 						{
 							if (Tanken(player, window) == true && Coins >= 5) {
 								gas = 100;
