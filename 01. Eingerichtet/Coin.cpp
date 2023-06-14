@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-extern sf::Vector2f zweiRandomZahl();
+extern sf::Vector2f zweiRandomZahl(); //Gibt zwei zufällige Zahlen zurück, um damit die Münzen zufällig zu platzieren 
 
 int SamCoin(sf::RectangleShape* player, sf::Vector2f temppos, sf::RenderWindow& fenster, int* coinsetzen, sf::RectangleShape* Coin1, sf::RectangleShape* Coin2, sf::RectangleShape* Coin3, int* münze) {
 

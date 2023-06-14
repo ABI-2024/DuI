@@ -451,10 +451,10 @@ int main()
 
 						temppos = player.getPosition();
 
-						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen);
+						wobinich = PossitionMap(window, &player, &Boden, &wobinich, &Map, &coinsetzen); //Sorgt für das wechseln der Kartenabschnitte 
 						if (wobinich == 5 && counter >= 350 && Coins >= 5)
 						{
-							if (Tanken(player, window) == true && Coins >= 5) {
+							if (Tanken(player, window) == true && Coins >= 5) { //Funktion für das Tanken, kostet 5 Münzen und hat einen cooldown
 								gas = 100;
 								inputFile.open("data.scv");
 								Coins = Coins - 5; //5 Münzen kostet der Tank
@@ -469,7 +469,7 @@ int main()
 						if (wobinich == 5 && carskin == 0)
 						{
 
-							if (shop(player, window) == true && Coins >= 100) {
+							if (shop(player, window) == true && Coins >= 100) {   //Shop ist immer da, klappt aber erst wenn man 100 Münzen hat
 								Car.loadFromFile("ressources/gcar" + std::to_string(richt) + ".png");
 								player.setTexture(&Car);
 								inputFile2.open("dataskin.scv");
@@ -486,19 +486,12 @@ int main()
 							}
 						}
 
-						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20)
+						if (SamCoin(&player, temppos, window, &coinsetzen, &Coin1, &Coin2, &Coin3, &münzen) == true && Coincounter >= 20) //Funktion zum Sammeln von Münzen
 						{
 							inputFile.open("data.scv");
 							Coins++;
 							inputFile << Coins;
 							inputFile.close();
-							//char tcoins[5] = eingabecoins.c_str;
-							//for (int i = 0; i < 5; i++) {
-							//	tcoins[i] = tcoins[i] + 69;
-							//}
-
-
-
 							inputFile << eingabecoins;
 							inputFile.close();
 							sound.setBuffer(coinsound);
@@ -511,7 +504,7 @@ int main()
 						{
 							if (temppos.y > 20 && temppos.y < 700)
 							{
-								damage = motor(temppos, wobinich, window, damage);
+								damage = motor(temppos, wobinich, window, damage); //Sorgt für Schaden am Auto
 							}
 						}
 						window.draw(Coin1);
