@@ -7,7 +7,7 @@ bool shop(sf::RectangleShape player, sf::RenderWindow& fenster) {
 	Cart.loadFromFile("ressources/card.png");
 	sf::RectangleShape CartShop;
 	CartShop.setTexture(&Cart);
-	CartShop.setSize(sf::Vector2f(30, 30));
+	CartShop.setSize(sf::Vector2f(38, 26));
 	CartShop.setPosition(370, 285);
 
 	if (player.getGlobalBounds().intersects(CartShop.getGlobalBounds())) {
