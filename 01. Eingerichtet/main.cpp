@@ -231,7 +231,7 @@ int main()
 			if (eventnormal.type == sf::Event::MouseButtonPressed &&
 				eventnormal.mouseButton.button == sf::Mouse::Left)
 			{
-				sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 				if (button.getGlobalBounds().contains(mousePos.x, mousePos.y))
 				{
 					Menugenerell = 1;
@@ -250,7 +250,7 @@ int main()
 									if (eventgameover.type == sf::Event::MouseButtonPressed &&
 										eventgameover.mouseButton.button == sf::Mouse::Left)
 									{
-										sf::Vector2i mousePos7 = sf::Mouse::getPosition(window);
+										sf::Vector2f mousePos7 = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 										if (backtomenu.getGlobalBounds().contains(mousePos7.x, mousePos7.y))
 										{
 											Menugenerell = 0;
@@ -402,7 +402,7 @@ int main()
 									if (eventnormal.type == sf::Event::MouseButtonPressed &&
 										eventnormal.mouseButton.button == sf::Mouse::Left)
 									{
-										sf::Vector2i mousePos4 = sf::Mouse::getPosition(window);
+										sf::Vector2f mousePos4 = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 										if (backtomenu.getGlobalBounds().contains(mousePos4.x, mousePos4.y))
 										{
 											Menugenerell = 0;
@@ -432,7 +432,7 @@ int main()
 
 										}
 
-										sf::Vector2i mousePos5 = sf::Mouse::getPosition(window);
+										sf::Vector2f mousePos5 = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 										if (backtogame.getGlobalBounds().contains(mousePos5.x, mousePos5.y))
 										{
 											escmenu = 0;
@@ -539,7 +539,7 @@ int main()
 			if (eventnormal.type == sf::Event::MouseButtonPressed &&
 				eventnormal.mouseButton.button == sf::Mouse::Left)
 			{
-				sf::Vector2i mousePos3 = sf::Mouse::getPosition(window);
+				sf::Vector2f mousePos3 = window.mapPixelToCoords(sf::Mouse::getPosition(window));
 				if (button3.getGlobalBounds().contains(mousePos3.x, mousePos3.y))
 				{
 					window.close();
